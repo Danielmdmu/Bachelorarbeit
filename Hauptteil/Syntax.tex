@@ -1,0 +1,234 @@
+\chapter{Syntax}
+Die Akzeptanz einer Programmiersprache steht oftmals in Zusammenhang mit der Syntax. 
+Ein Großteil der heutigen Hochsprachen ähneln in ihrer Syntax der Programmiersprache C. 
+Moderne Programmiersprachen versuchen sich teilweise von diesem Muster zu lösen um zum Beispiel die Lesbarkeit des Quelltextes zu verbessern.
+
+\section{Grundstruktur}
+Um den Quelltext einer Programmiersprache in ein lauffähiges Programm zu übersetzen, muss dieser bestimmte Grundvoraussetzungen erfüllen.
+% Im folgenden Abschnitt soll gezeigt werden welche Grundstruktur an Quelltext von den Compilern von Go und Swift benötigt werden. 
+
+Bei der Einführung in eine neue Programmiersprache wird meist mit dem bekannten ,,Hallo Welt''-Beispiel begonnen.
+Dieses einfache Beispiel veranschaulicht sehr gut, welche Grundstruktur eine Quelltext-Datei aufweisen muss.
+
+Im \autoref{lst:helloWorldGo} ist ein ,,Hallo Welt''-Beispiel in Go zu sehen.
+Der Quelltext beginnt mit der \emph{package}-Deklaration.
+In Go ist der Quelltext in \emph{Packages} organisiert. 
+Dies ist ähnlich zu \emph{Namespaces} oder \emph{Modules} in anderen Programmiersprachen.
+Die Deklaration des Packages main stellt einen Spezialfall dar und deklariert eine eigenständig ausführbare Programmdatei.
+Die \emph{Import}-Deklaration in Zeile 3 zeigt dem Compiler welche \emph{Packages} benötigt werden.
+Das \emph{fmt}-Package wird für die Ausgabe auf der Konsole benötigt.
+
+\begin{listing}[H]
+\caption{Hallo Welt in Go}
+\label{lst:helloWorldGo}
+\begin{GoCode}
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hallo Welt - das ist Go")
+}
+\end{GoCode}
+\end{listing}
+
+Go benötigt exakt die Pakete die im Quelltext verwendet werden, andernfalls kann der Quelltext nicht kompiliert werden. 
+Im Gegensatz zu den meisten anderen Programmiersprachen bricht der Compiler auch ab, wenn \emph{Packages} importiert werden, die im Quelltext nicht verwendet werden.
+Ähnlich zu anderen Programmiersprachen benötigt ein ausführbares Programm eine \emph{main}-Funktion.
+Diese wird in Zeile 5 deklariert.
+In Zeile 6 wird die Funktion \emph{Println} aus dem Package fmt aufgerufen, welche die Meldung ,,Hallo Welt - das ist Go'' auf der Konsole ausgibt \cite{Donovan.2016}.
+
+
+%Swift benötigt für das gleiche Ergebnis verhältnismäßig wenige Anweisungen. 
+Wie in \autoref{lst:helloWorldSwift} zu sehen, erledigt Swift die Ausgabe des Textes ,,Hallo Welt - das ist Swift'' mit nur einer Zeile Quelltext. Es müssen keine Bibliotheken eingebunden werden. Da sich die \emph{print}-Anweisung nicht in einer Funktion befindet, muss auch keine \emph{main}-Funktion definiert werden\cite{Apple.2017}.
+
+\begin{listing}[H]
+\caption{Hallo Welt in Swift}
+\label{lst:helloWorldSwift}
+\begin{SwiftCode}
+print("Hallo Welt - das ist Swift")
+\end{SwiftCode}
+\end{listing}
+
+\section{Variablen und Konstanten}
+Konstanten und Variablen sind ein elementarer Bestandteil jeder Programmiersprache. 
+Der Wert von Konstanten ist dem Compiler zur Compile-Zeit bekannt und kann dementsprechend evaluiert werden \cite{Donovan.2016}. 
+
+Die Definition von Variablen und Konstanten in Go ist in \autoref{lst:VariableGo} zu sehen.
+In Zeile 1 und Zeile 2 werden Variablen definiert und initialisiert.
+Über das Schlüsselwort \emph{var} wird dem Compiler mitgeteilt, dass es sich um eine Variable handelt.
+Eine Konstante wird mit dem Schlüsselwort \emph{const} definiert.
+Im Gegensatz zu Zeile 2 ist zur Variable \emph{variable1} kein Datentyp angegben. 
+Der Datentyp wird vom Compiler selbstständig erkannt. 
+Dieser Mechanismus wird \emph{Type Inference} genannt und wird im \autoref{sec:TypeInference} \nameref{sec:TypeInference} näher erläutert.
+
+\begin{listing}
+\caption{Variablen und Konstanten in Go}
+\label{lst:VariableGo}
+\begin{GoCode}
+var variable = "Variable in Go"
+var variable2 string = "Noch eine Variable in Go"
+const konstante = "Konstante in Go"
+\end{GoCode}
+\end{listing}
+
+Im \autoref{lst:VariableSwift} ist die Definition von Variablen und Konstanten in Swift zu sehen. 
+Analog zu Go verwendet auch Swift das Schlüsselwort \emph{var} zur Definition von Variablen.
+Auch Swift beherrscht \emph{Type Inference} (siehe \autoref{sec:TypeInference} \nameref{sec:TypeInference}).
+Eine Konstante wird in Swift mit dem Schlüsselwort \emph{let} definiert.
+
+\begin{listing}
+\caption{Variablen und Konstanten in Swift}
+\label{lst:VariableSwift}
+\begin{SwiftCode}
+var variable1 = "Variable in Swift"
+var variable2 : String = "Noch eine Variable in Swift"
+let konstante = "Konstante in Swift"
+\end{SwiftCode}
+\end{listing}
+
+\section{Funktionen}
+Eine Funktion ermöglichte es eine Abfolge von Anweisungen zusammenzufassen und diese in einem Programm auch mehrmals aufzurufen. 
+Mit Funktionen kann eine Aufgabe in kleine Teile aufgeilt werden.
+Bei der Verwendung einer Funktion müssen keine Details zur Implementierung vorhanden sein.
+Funktionen sind somit ein wichtiger Teil jeder Programmiersprache \cite{Kennedy.2016}
+
+Im \autoref{lst:FunktionGo} ist der Grundaufbau einer Funktion in Go dargestellt.
+Mit dem Schlüsselwort \emph{func} wird eine Funktion eingeleitet, gefolgt vom Namen der Funktion.
+Eine Liste an Parametern wird in Klammern angegeben. 
+Anschließend kann eine Liste von Rückgabewerte definiert werden.
+Der Funktions-Körper befindet sich in geschweiften Klammern.
+
+\begin{listing}
+\caption{Aufbau einer Funktion in Go \cite{Donovan.2016}}
+\label{lst:FunktionGo}
+\begin{GoCode}
+func name(parameter-list) (result-list){
+    body
+}
+\end{GoCode}
+\end{listing}
+
+In \autoref{lst:BeispielFunktionGo} ist die Definition einer einfachen Funktion mit einem Rückgabewert zu sehen. 
+Die Funktion \emph{add} übernimmt zwei Parameter vom Typ \emph{int} und gibt einen Wert vom Typ \emph{int} zurück.
+Als Rückgabewert liefert die Funktion die Summe der beiden Parameter.
+Bei nur einem Rückgabewert ist die Klammer um den Rückgabewert optional.
+Sobald ein Rückgabewert definiert ist, erwartet der Compiler im Funktionskörper das \emph{return} Schlüsselwort
+
+\begin{listing}
+\caption{Beispiel-Funktionen in Go}
+\label{lst:BeispielFunktionGo}
+\begin{GoCode}
+func add(a int, b int) (int) {
+    return a + b
+}
+\end{GoCode}
+\end{listing}
+
+Das \autoref{lst:BeispielFunktionMultiGo} zeigt zwei Funktionen mit mehreren Rückgabewerten.
+Die Funktion \emph{multiOp} verwendet Namen um die Rückgabewerte zu identifizieren.
+In der Funktion können den Rückgabewerten dann Werte zugewiesen werden.
+Mit dem Schlüsselwort \emph{return} werden alle Rückgabewerte in der festgelegten Reihenfolge zurückgegeben.
+Im Unterschied dazu müssen in der Funktion \emph{addSubMulDiv} die gewünschten Rückgabewerte an die \emph{return}-Anweisung angehängt werden.
+Hierbei muss die Reihenfolge der Rückgabewerte beachtet werden, da auch beim Aufruf der Funktion die Rückgabewerte in dieser Reihenfolge zurückgegeben werden (siehe Zeile 13). 
+
+\begin{listing}
+\caption{Beispiel-Funktionen in Go}
+\label{lst:BeispielFunktionMultiGo}
+\begin{GoCode}
+func addSubMulDiv(a int, b int) (int, int, int, int){
+    return a + b, a - b, a * b, a / b
+}
+
+func multiOp(x int, y int) (add int, sub int, mul int, div int){
+    add = x + y
+    sub = x - y
+    mul = x * y
+    div = x / y
+    return
+}
+
+var a, s, m, d = addSubMulDiv(3,4)
+\end{GoCode}
+\end{listing}
+
+Das \autoref{lst:FunktionenSwift} zeigt den Aufbau einer Funktion in Swift. 
+Ähnlich zu Go verwendet auf Swift das Schlüsselwort \emph{func}.
+Auch sonst ähnelt der Grundaufbau einer Funktion in Swift dem in Go.
+Im Gegensatz zu Go muss die Definition der Rückgabewerte mit einer speziellen Zeichenkette gekennzeichnet werden.
+Die Rückgabwerte werden mit dem \emph{return arrow}(->) gekennzeichnet \cite{Apple.2017}.
+
+\begin{listing}
+\caption{Funktionen in Swift}
+\label{lst:FunktionenSwift}
+\begin{SwiftCode}
+func name(parameter-list) -> (result-list){
+    body
+}
+\end{SwiftCode}
+\end{listing}
+
+Die Definition von Funktionen ohne Rückgabewert sind in \autoref{lst:FunktionVoidSwift} zu sehen.
+Wenn keine Rückgabewert definiert werden soll, kann der \emph{return arrow}(->) weggelassen werden.
+Jedoch kann der Rückgabwert auch explizit als Typ \emph{Void} definiert werden.
+
+\begin{listing}[H]
+\caption{Funktionen in Swift}
+\label{lst:FunktionVoidSwift}
+\begin{SwiftCode}
+func ohneRueckgabe() {
+    print("Hallo Welt")
+}
+
+func ohneRueckgabe() -> (Void) {
+    print("Hallo Welt")
+}
+\end{SwiftCode}
+\end{listing}
+
+Das \autoref{lst:FunktionRueckgabewift} zeigt die Definiton einer Funktion mit einem Rückgabewert. 
+Die Funktion erwartet zwei Zeichenketten und gibt eine Zeichenkette zurück.
+In Zeile 5 ist der Aufruf der Funktion gezeigt. 
+Swift erwartet das die Aufrufparameter mit Namen und in der definierten Reihenfolge angegeben werden.
+
+\begin{listing}
+\caption{Definiton einer Funktion mit Rückgabewert in Swift}
+\label{lst:FunktionRueckgabewift}
+\begin{SwiftCode}
+func func1(vorName: String, nachName: String) -> (String){
+    return vorName + ", " + nachName
+}
+
+print(func1(vorName:"Max", nachName:"Mustermann"))
+\end{SwiftCode}
+\end{listing}
+
+Auch Swift unterstützt die Rückgabe von mehreren Rückgabewerten.
+Ein Beispiel dafür ist in \autoref{lst:FunktionMultiRueckgabewift} zu sehen. 
+
+\begin{listing}
+\caption{Definiton einer Funktion mit Rückgabewert in Swift}
+\label{lst:FunktionMultiRueckgabewift}
+\begin{SwiftCode}
+func multiOp(x:Int, y:Int) -> (add:Int, sub:Int, mul:Int, div:Int){
+    let addition = x + y
+    let subtraktion = x - y
+    let multiplikation = x * y
+    let division = x / y
+	
+    return (addition, subtraktion, multiplikation, division)
+}
+
+var test = multiOp(x: 3, y: 4)
+print(test.add)
+\end{SwiftCode}
+\end{listing}
+
+Die Funktion ist das Swift-Äquivalent zu der Funktion im \autoref{lst:BeispielFunktionMultiGo}. 
+Die Rückgabeparameterr können mit einem Namen versehen werden, über den der Wert des Rückgabeparameters angesprochen werden kann. 
+Die Rückgabewerte der Funktion können einer Variablen zugewiesen werden (Zeile 10).
+Anschließend kann über den Namen des Rückgabeparameters auf dessen Wert zurückgegriffen werden. 
+Diese Art des Zugriffs auf die einzelnen Rückgabwerte ist in Swift eleganter gelöst als in Go.
+
+
+

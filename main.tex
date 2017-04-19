@@ -38,6 +38,10 @@
 \usepackage[]{hyperref}
 \usepackage{chngcntr}%% Nummerierung der Abbildungen und Tabellen fortlaufend %%%%%%
 \usepackage{tocbibind}
+\usepackage[style=alphabetic, citestyle=alphabetic, ,maxcitenames=1,uniquelist=false]{biblatex}
+\usepackage[babel,german=quotes]{csquotes} % Deutsche
+\usepackage{booktabs}
+\usepackage[final]{showkeys}
 
 % Paragraph styles
 \setlength{\parindent}{0cm}
@@ -78,7 +82,7 @@ BoldItalicFont=timesbi.ttf
 %% Rahmen in Textbreite um Bilder
 \floatstyle{boxed}
 \restylefloat{figure}
-\restylefloat{table}
+%\restylefloat{table}
 \restylefloat{listing}
 
 %% Captions linksbündig orientieren
@@ -88,6 +92,30 @@ BoldItalicFont=timesbi.ttf
 \input{Verzeichnisse/Glossar.tex}
 \input{Verzeichnisse/Abkürzungsverzeichnis.tex}
 \makeglossaries
+
+% Hinzufügen von Bib-Dateien
+\addbibresource{Literatur/literatur.bib}
+
+\newminted[GoCode]{go}{linenos=true, xleftmargin=1cm}
+\newminted[SwiftCode]{swift}{linenos=true, xleftmargin=1cm, escapeinside=@@}
+\newmintedfile[InputGo]{go}{linenos=true, xleftmargin=1cm}
+\newmintedfile[InputSwift]{swift}{linenos=true, xleftmargin=1cm}
+
+\usepackage{color}
+\newcommand{\todo}[1]{\textcolor{white}{\colorbox{red}{ To do %
+      :}}\textcolor{red}{\ \ #1
+   }\textcolor{red}{\colorbox{red}{III}}\ }
+
+\newcommand{\CodeRef}[1]{Codebeispiel \ref{#1}}
+\newcommand{\SeiteRef}[1]{Seite \ref{#1}}
+\newcommand{\BildRef}[1]{Abbildung \ref{#1}}
+\newcommand{\TabRef}[1]{Tabelle \ref{#1}}
+\newcommand{\KapitelRef}[1]{Kapitel \ref{#1}}
+\newcommand{\AbschnittRef}[1]{Abschnitt \ref{#1}}
+
+\def\listingautorefname{Codebeispiel}% 
+
+
 
 \begin{document}
 
@@ -161,15 +189,37 @@ BoldItalicFont=timesbi.ttf
 \newpage
 \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
 
+
+
 %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 % Text Einleitung, Hauptteil usw. 
 %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 \input{Einleitung.tex}
 
-\input{Hauptteil/Beispiel.tex}
+\input{Hauptteil/Syntax.tex}
+
+\input{Hauptteil/Typsystem.tex}
+
+\input{Hauptteil/ObjektorientierteProgrammierung.tex}
+
+\input{Hauptteil/Fehlerbehandlung.tex}
+
+\input{Hauptteil/Speicherverwaltung.tex}
+
+\input{Hauptteil/GenerischeProgrammierung.tex}
+
+\input{Hauptteil/Nebenläufigkeit.tex}
+
+\input{Hauptteil/FunktionaleProgrammierung.tex}
+
+\input{Hauptteil/Anwendungsbeispiel.tex}
+
+\input{Hauptteil/Tools.tex}
 
 \input{Schluss.tex}
+
+\input{Hauptteil/Beispiel.tex}
 
 
 %===========================================================
@@ -183,8 +233,7 @@ BoldItalicFont=timesbi.ttf
 %===========================================================
 %== Literaturverzeichnis ===================================
 %===========================================================
-\bibliography{Literatur/literatur}
-\bibliographystyle{alphadin}
+\printbibliography[heading=bibintoc,title={Literaturverzeichnis}]
 
 %===========================================================
 %== Anhang =================================================
