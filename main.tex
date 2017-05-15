@@ -25,7 +25,6 @@
 \usepackage[toc, nopostdot, acronyms]{glossaries}%% Glossar
 \usepackage[intoc]{nomencl}%% Symbolverzeichnis
 \usepackage{etoolbox}%Sorgt dafür, das Symbolverzeichnis im Header steht
-%\usepackage{listings}
 \usepackage[]{minted}
 \usepackage[titles]{tocloft}
 \usepackage{scrhack}
@@ -42,6 +41,7 @@
 \usepackage[babel,german=quotes]{csquotes} % Deutsche
 \usepackage{booktabs}
 \usepackage[final]{showkeys}
+\usepackage{tabularx}
 
 % Paragraph styles
 \setlength{\parindent}{0cm}
@@ -96,25 +96,32 @@ BoldItalicFont=timesbi.ttf
 % Hinzufügen von Bib-Dateien
 \addbibresource{Literatur/literatur.bib}
 
-\newminted[GoCode]{go}{linenos=true, xleftmargin=1cm}
-\newminted[SwiftCode]{swift}{linenos=true, xleftmargin=1cm, escapeinside=@@}
-\newmintedfile[InputGo]{go}{linenos=true, xleftmargin=1cm}
-\newmintedfile[InputSwift]{swift}{linenos=true, xleftmargin=1cm}
+\newminted[GoCode]{go}{linenos=true, xleftmargin=.7cm}
+\newminted[SwiftCode]{swift}{linenos=true, xleftmargin=.7cm, escapeinside=@@}
+\newmintedfile[InputGo]{go}{linenos=true, xleftmargin=.7cm}
+\newmintedfile[InputSwift]{swift}{linenos=true, xleftmargin=.7cm}
 
 \usepackage{color}
 \newcommand{\todo}[1]{\textcolor{white}{\colorbox{red}{ To do %
       :}}\textcolor{red}{\ \ #1
-   }\textcolor{red}{\colorbox{red}{III}}\ }
+  }\textcolor{red}{\colorbox{red}{III}}\ }
 
-\newcommand{\CodeRef}[1]{Codebeispiel \ref{#1}}
-\newcommand{\SeiteRef}[1]{Seite \ref{#1}}
-\newcommand{\BildRef}[1]{Abbildung \ref{#1}}
-\newcommand{\TabRef}[1]{Tabelle \ref{#1}}
-\newcommand{\KapitelRef}[1]{Kapitel \ref{#1}}
-\newcommand{\AbschnittRef}[1]{Abschnitt \ref{#1}}
 
 \def\listingautorefname{Codebeispiel}% 
 
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % linksbündig mit Breitenangabe
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % zentriert mit Breitenangabe
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % rechtsbündig mit Breitenangabe
+
+
+\newcommand{\dummyfig}[1]{
+  \centering
+  \fbox{
+    \begin{minipage}[c][0.33\textheight][c]{0.5\textwidth}
+      \centering{#1}
+    \end{minipage}
+  }
+}
 
 
 \begin{document}
@@ -162,31 +169,31 @@ BoldItalicFont=timesbi.ttf
 \listoflistings
 \addcontentsline{toc}{chapter}{Codebeispielverzeichnis}
 
-%===========================================================
-%== Symbolverzeichnis ======================================
-%===========================================================
-\newpage
-%% Symbolverzeichnis
-\makenomenclature
-% This will add the units
-%----------------------------------------------
-\newcommand{\nomunit}[1]{%
-\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
-%----------------------------------------------
-\renewcommand{\nomname}{Symbolverzeichnis}
-%Sorgt dafür, das Symbolverzeichnis im Header steht
-\patchcmd{\thenomenclature}
-  {\chapter*{\nomname}}% usually only \chapter*{\nomname} is issued
-  {\chapter*{\nomname}\markboth{\MakeUppercase\nomname}{\MakeUppercase\nomname}}
-  {}{}
-\input{Verzeichnisse/Symbolverzeichnis.tex}
-\printnomenclature
+% %===========================================================
+% %== Symbolverzeichnis ======================================
+% %===========================================================
+% \newpage
+% %% Symbolverzeichnis
+% \makenomenclature
+% % This will add the units
+% %----------------------------------------------
+% \newcommand{\nomunit}[1]{%
+% \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+% %----------------------------------------------
+% \renewcommand{\nomname}{Symbolverzeichnis}
+% %Sorgt dafür, das Symbolverzeichnis im Header steht
+% \patchcmd{\thenomenclature}
+%   {\chapter*{\nomname}}% usually only \chapter*{\nomname} is issued
+%   {\chapter*{\nomname}\markboth{\MakeUppercase\nomname}{\MakeUppercase\nomname}}
+%   {}{}
+% \input{Verzeichnisse/Symbolverzeichnis.tex}
+% \printnomenclature
 
 
 %===========================================================
 %== Abkürzungsverzeichnis ==================================
 %===========================================================
-\newpage
+%\newpage
 \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
 
 
@@ -219,7 +226,7 @@ BoldItalicFont=timesbi.ttf
 
 \input{Schluss.tex}
 
-\input{Hauptteil/Beispiel.tex}
+%\input{Hauptteil/Beispiel.tex}
 
 
 %===========================================================

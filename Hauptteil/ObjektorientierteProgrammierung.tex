@@ -31,10 +31,414 @@ Dieser Abschnitt beschäftigt sich mit der Frage ob Go und Swift Vererbung unter
 Zu diesem Zweck soll eine gegebene Vererbungshierarchie in Form eines UML-Klassendiagramms beispielhaft in Go und Swift implementiert werden. 
 Das folgende Beispiel orientiert sich an \cite[]{WilliamKennedy.2013}.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/Klassendiagramm.pdf}
+    \caption{Klassendiagramm}
+    \label{fig:Klassendiagramm}
+\end{figure}
+
+\autoref{fig:Klassendiagramm} zeigt ein UML-Klassendiagramm mit einer einfachen Vererbungs-Hierarchie.
+Die beiden Klassen \emph{Cat} und \emph{Dog} erben die Eigenschaften von der Klasse \emph{Animal}.
+
+
+Da Go keine Vererbung beherrscht, ist Komposition\todo{Glossar} die einzige Möglichkeit eine Hierarchie abzubilden \cite[]{Kennedy.2016}.
+Das \autoref{lst:VererbungGo} zeigt die Implementierung der Vererbungshierarchie aus \autoref{fig:Klassendiagramm}.
+
+\begin{listing}[H]
+\caption{Vererbung in Go \cite{Kennedy.2016}}
+\label{lst:VererbungGo}
+\begin{GoCode}
+type Animal struct {
+    Name string
+    mean bool
+}
+
+type Cat struct {
+    Basics Animal
+    MeowStrength int
+}
+
+type Dog struct {
+    Animal
+    BarkStrength int
+}
+\end{GoCode}
+\end{listing}
+
+In Zeile 1-4 wird eine neue struct \emph{Animal} definiert.
+Die struct \emph{Animal} wird anschließend in die structs \emph{Cat} und \emph{Dog} eingebunden. 
+Hierdurch bekommen \emph{Cat} und \emph{Dog} die Eigenschaften von \emph{Animal}.
+Bei der struct \emph{Cat} wurde die struct \emph{Animal} mit dem Zusatz \emph{Basics} eingebunden. 
+Dies bedeutet das beim Zugriff auf die geerbeten Eigenschaften aus \emph{Animal} auch immer zusätzlich \emph{Basics} angegeben werden muss. 
+Die struct \emph{Dog} bindet \emph{Animal} dagegeben anonym ein. 
+Die anonyme Variante hat den Vorteil, dass beim Zugriff auf Eigenschaften nicht zwischen geerbeten und eigenen Eigenschaften unterschieden werden muss.
+Ist dieses Verhalten explizit gewünscht, sollte der Programmierer der eingebetteten struct einen Namen geben.
+Da es sich bei diesem Vorgehen um eine Konvention handelt, sollte dieser Name immer gleich lauten und für größere Projekte separat festgehalten werden. 
+\todo{Verweis zu Methoden}
+
+Swift kennt sowohl Strukturen als auch Klassen. Von Apple werden Klassen und Strukturen wie folgt beschrieben. 
+\begin{quote}
+\enquote{Classes and structures are general-purpose, flexible constructs that become the building blocks of your program’s code. You define properties and methods to add functionality to your classes and
+structures by using exactly the same syntax as for constants, variables, and functions.} \cite[S.183]{Apple.2017}
+\end{quote}
+
+Im Folgenden werden aus der Sicht von Swift nur Klassen berücksichtigt und Strukturen nicht beachtet.
+\autoref{lst:VererbungSwift} zeigt die Implementierung der Vererbungshierarchie aus \autoref{fig:Klassendiagramm}.
+
+\begin{listing}[H]
+\caption{Vererbung in Swift}
+\label{lst:VererbungSwift}
+\begin{SwiftCode}
+class Animal{
+    var Name : String = ""
+    var mean : Bool = false
+}
+
+class Cat : Animal{
+    var MeowStrenght : Int = 0
+}
+
+class Dog : Animal{
+    var BarkStrenght : Int = 0
+}
+\end{SwiftCode}
+\end{listing}
+
+In Zeile 1 - 4 wird die Basisklasse \emph{Animals} definiert. 
+Die beiden Klassen \textit{Cat} und \textit{Dog} leiten sich von der Basisklasse \textit{Animal} ab. 
+Dazu wird jeweils in Zeile 6 und Zeile 10 der Name der Basisklasse nach dem Namen der abgeleiteten Klasse getrennt von einem Doppelpunkt geschrieben \cite[S.226]{Apple.2017}.
+Die abgeleiteten Klassen erben somit die Eigenschaften der Basisklasse. 
+
+Im Gegensatz zu Go beherrscht Swift den Mechanismus der Vererbung.
+Eine Klasse in Swift kann immer nur von genau einer Basisklasse abgeleitet werden, bekannt als einfache Vererbung \cite[S.125]{Hoffman.2017}.
 
 \section{Datenkapselung}
+Während die strukturierte Programmierung Daten und Logik voneinander trennt, gehören in der objektorientierten Programmierung die Daten explizit einem Objekt. 
+Der direkte Zugriff auf die Daten eines Objekts ist nicht erlaubt. 
+So haben Objekte das alleinige Recht lesend und schreibend auf ihre Daten zuzugreifen. 
+Ein Zugriff auf die Daten von Außen muss über eine klar definierte Schnittstelle erfolgen.
+In \autoref{fig:Kapselung} ist dargestellt, wie der direkte Zugriff auf die Daten unterbunden ist und nur durch die Methoden \emph{move} und \emph{paint} ermöglicht wird \cite[]{Lahres.2011}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=8cm]{Images/Kapselung.pdf}
+    \caption{Datenkapselung in Anlehnung an \cite[]{Lahres.2011}}
+    \label{fig:Kapselung}
+\end{figure}
+
+Ein Vorteil der Datenkapselung ist laut \cite[]{Lahres.2011}, dass ein Objekt selbst für die Konsistenz seiner Daten sorgen kann. 
+Von \cite[S.86f]{PoetzschHeffter.2009} wird als Vorteil der das Prinzip des \emph{Information Hiding} genannt. 
+Da auf die Daten nur über eine definierte Schnittstelle zugegriffen werden kann, ist es möglich Implementierungsdetails hinter der Schnittstelle zu ändern ohne das Programmteile, die diese Klasse verwenden, angepasst werden müssen. 
+Dies setzt voraus, dass die Schnittstelle gleich bleibt.
+
+Um den Zugriff auf die Daten eines Objektes zu unterbinden oder zu ermöglichen, bietet Go die Möglichkeit die Eigenschaften eines Objektes, ähnlich der Zugriffsmodifizierer in Java, entweder \emph{Public} oder \emph{Private} zu deklarieren. 
+Im Unterschied zu Java verwendet Go allerdings keine Schlüsselwörter wie \emph{Public} oder \emph{Private}.
+Wird in Go der erste Buchstabe des Names eines Typs, Variable/Konstante oder Funktion klein geschrieben, ist das Element nur innerhalb des \emph{Package} sichtbar, also Private. 
+Wird der erste Buchstaben des Names jedoch groß geschrieben, ist dass Element auch außerhalb des \emph{Package} sichtbar, also Public.
+Das \autoref{lst:KapselungGo} zeigt ein Beispiel für diesen Mechanismus. 
+In Zeile 6 wird eine Eigenschaft \emph{age} definiert die aufgrund der Kleinschreibung nicht aus dem Package \emph{animals} exportiert wird. 
+
+\begin{listing}[H]
+\caption{Datenkapselung in Go \cite[]{Kennedy.GoExport}}
+\label{lst:KapselungGo}
+\begin{GoCode}
+package animals
+
+type Dog struct {
+    Name string
+    BarkStrength int
+    age int
+}
+\end{GoCode}
+\end{listing}
+
+Eine Anwendung der struct \emph{Dog} ist in \autoref{lst:KapselungGo2} zu sehen.
+Nachdem in Zeile 5 das Package \emph{animals} importiert wurde, kann die struct \emph{Dog} verwendet werden.
+Da die Eigenschaft \emph{age} nicht aus dem Package \emph{animals} exportiert wird, gibt der Compiler die Fehlermeldung aus Zeile 17 aus. 
+
+\begin{listing}[H]
+\caption{Datenkapselung in Go \cite[]{Kennedy.GoExport}}
+\label{lst:KapselungGo2}
+\begin{GoCode}
+package main
+
+import (
+    "fmt"
+    "animals"
+)
+
+func main() {
+    dog := animals.Dog{
+        Name:         "Chole",
+        BarkStrength: 10,
+        age:          5,
+    }
+    fmt.Printf("Counter: %#v\n", dog)
+}
+//Compiler-Fehler: 
+//./main.go:14: unknown animal.Dog field ‘age’ in struct literal
+\end{GoCode}
+\end{listing}
+
+Eine Möglichkeit die Eigenschaft \emph{age} zugänglich zu machen, ist den Zugriff über eine Get-Funktion und Set-Funktion zu realisieren.
+Hierzu wurde im \autoref{lst:KapselungGo3} jeweils eine Funktion für den lesenden und schreibenden Zugriff auf die Eigenschaft \emph{age} implementiert. 
+Die beiden Funktionsnamen setzen sich aus dem Namen der jeweiligen Eigenschaft, hier \emph{Age} und einem Prefix, \emph{Get} oder \emph{Set}, zusammen.
+Es ist zu beachten, dass die Namen der beiden Funktionen (\emph{SetAge} und \emph{GetAge}) mit einem Großbuchstaben beginnen, da diese sonst nicht exportiert werden. 
+Um den Ansatz der Datenkapselung konsequent zu verfolgen, sollten im \autoref{lst:KapselungGo3} auch die Eigenschaften \emph{Name} und \emph{BarkStrength} auf diese Art implementiert werden.   
+
+\begin{listing}[H]
+\caption{Datenkapselung in Go}
+\label{lst:KapselungGo3}
+\begin{GoCode}
+package animals
+
+type Dog struct {
+    Name string
+    BarkStrength int
+    age int
+}
+
+func (d *Dog) SetAge(age int) {
+    d.age = age
+}
+
+func (d *Dog) GetAge() int {
+    return d.age
+}
+\end{GoCode}
+\end{listing}
+
+Auch Swift bietet die Möglichkeit über bietet Möglichkeiten zur Zugriffskontrolle. 
+Die Zugriffs-Level sind relativ zu der Quellcodedatei und dem Modul in dem die Entität definiert wurde \cite[S.394]{Apple.2017}.
+Laut der offiziellen Dokumentation \cite[S.394]{Apple.2017} bietet Swift die folgenden fünf Zugriffs-Level
+
+\begin{itemize}
+    \item Open access
+    \item Public access
+    \item Internal access
+    \item File-private access
+    \item Private access
+\end{itemize}
+
+Eine Entität, die als \textit{open} oder \textit{public} deklariert wurde, kann aus jeder Quellcodedatei im gleichen Modul verwendet werden. 
+Ebenso kann jede Quellcodedatei, welche das Modul importiert in dem die Entität definiert wurde, auf die Entität zugreifen. 
+Das Schlüsselwort \textit{open} greift nur bei Klassen und deren Eigenschaften.
+Eine Klasse die als \textit{open} deklariert wurde, kann auch außerhalb ihres eigenen Moduls, vererbt werden, wenn das zugehörie Modul importiert wurde.
+Dies unterscheidet das \textit{open}-Zugriffslevel von dem \textit{public}-Zugriffslevel.
+Wird eine Entität als \textit{internal} definiert, ist diese lediglich in Quellcodedateien des eigenen Moduls verfügbar. 
+Das Zugriffslevel \textit{fileprivate} schränkt den Zugriff auf die eigene Quellcodedatei ein.
+Das restriktivste Zugriffslevel, \textit{private}, schränkt den Zugriff auf die umschließende Deklaration, beispielsweise eine Klasse, ein.
+Ist kein Zugriffslevel definiert, verwendet der Compiler das \textit{internal}-Zugriffslevel.
+
+\begin{listing}
+\caption{Zugriffslevel in Swift \cite[S.396]{Apple.2017}}
+\label{lst:ZugriffslevelSwift}
+\begin{SwiftCode}
+public class SomePublicClass {}
+internal class SomeInternalClass {}
+fileprivate class SomeFilePrivateClass {}
+private class SomePrivateClass {}
+
+public var somePublicVariable = 0
+internal let someInternalConstant = 0
+fileprivate func someFilePrivateFunction() {}
+private func somePrivateFunction() {}
+\end{SwiftCode}
+\end{listing}
+
+Neben der Möglichkeit den Zugriff zu beschränken, bietet Swift die Möglichkeit Getter/Setter zu verwenden.
+autoref{lst:DatenkapselungSwfit} zeigt ein Beispiel für Datenkapselung in Swift. 
+Das Beispiel wurde analog zu dem \autoref{lst:KapselungGo3} in Go implementiert.
+
+\begin{listing}
+\caption{Datenkapselung in Swift}
+\label{lst:DatenkapselungSwfit}
+\begin{SwiftCode}
+class Dog {
+    var Name : String = ""
+    var BarkStrength : Int = 0
+	
+    private var _age : Int = 0
+    public var Age : Int {
+        get{return _age}
+        set{_age = newValue}
+    }
+}
+\end{SwiftCode}
+\end{listing}
+
+Die verschiedenen Zugriffslevel in Swift ermöglichen es den Zugriff auf Entitäten viel feiner zu steuern als in Go.
+Die Möglichkeit von Go, Entitäten als \textit{private} zu deklarieren (Kleinschreibung des Namens), ist in Swift mit dem Zugriffslevel \textit{iternal access} vergleichbar (Schlüsselwort \textit{interal}). 
+Wird in Go eine Entität als \textit{public} deklariert (Großschreibung des Namens), ist dies mit dem Zugriffslevel \textit{public access} (Schlüsselwort \textit{public}) in Swift zu vergleichen.
+Der Einsatz von Getter/Setter-Methoden in Swift ermöglicht dem Programmierer eine einfachere Schreibweise von Zuweisungen. 
+In \autoref{lst:GetterSetterSWift} ist die Verwendung der Klasse aus \autoref{lst:DatenkapselungSwfit} zu sehen. 
+der Variable \textit{aDog} wird eine neue Instanz der Klasse \textit{Dog} zugewiesen.
+Anschließend wird der Instanzvariablen \textit{Age} der Wert 2 zugewiesen.
+
+\begin{listing}
+\caption{Einsatz von Getter/Setter in Swift}
+\label{lst:GetterSetterSWift}
+\begin{SwiftCode}
+var aDog = Dog()
+
+aDog.Age = 2
+
+\end{SwiftCode}
+\end{listing}
+
+In Go sieht die Verwendung von Getter/Setter-Methoden aus, wie in \autoref{lst:GetterSetterGo} abgebildet.
+Da Go keine expliziten Getter/Setter-Methoden unterstützt, ist das Vorgehen aus \autoref{lst:KapselungGo3} und \autoref{lst:GetterSetterGo} an die Konvention gebunden, dass Instantzvariablen \textit{private} sind und der Zugriff auf die Werte der Instanzvariablen rein über eigens implementierte Getter/Setter-Methoden erfolgt.
+Um das Konzept der Datenkapselung in Go zu verfolgen, muss diese Konvention eingehalten werden.
+Swift erleichtert es dem Entwickler, dieses Konzept zu verfolgen.
+
+\begin{listing}
+\caption{Einsatz von Getter/Setter in Go}
+\label{lst:GetterSetterGo}
+\begin{GoCode}
+var Dog = new(animals.Dog)
+
+Dog.SetAge(2)
+\end{GoCode}
+\end{listing}
+
+\section{Polymorphie}
+Neben Vererbung und Datenkapselung ist Polymorphie ein Grundelement der Objektorientierten Programmierung.
+\cite[]{Lahres.2011} versteht unter Polymorphie in der Objektorientierten Programmierung, dass verschiedene Objekte bei Aufruf derselben Operation unterschiedliches Verhalten zeigen können. 
+In \autoref{fig:Polymorphie} wird ein praktisches Beispiel für Polymorphie aus dem Alltag gezeigt. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=5cm]{Images/Polymorphie}
+    \caption{Beispiel für Polymorphie \cite[]{Lahres.2011}}
+    \label{fig:Polymorphie}
+\end{figure}
+
+Polymorphie wird von \cite[]{Lahres.2011} mit ,,Vielgestaltigkeit'' übersetzt. Das Beispiel von \cite[]{Lahres.2011} bezieht sich auf die in \autoref{fig:Polymorphie} abgebildeten Glühbirnen und die zugehörige Fassung. 
+Eine Glühbirne kann unterschiedliche Formen und Stärken haben, aber solange sie sich an die Norm für die Fassung hält, wird sie in der Fassung funktionieren. 
+In Bezug auf Objektorientierung nennt \cite[]{Lahres.2011} das Beispiel ein Berechnungsverfahren gegen ein effizienteres Berechnungsverfahren zu tauschen. 
+Hierzu muss nur das Berechnungsverfahren, die Glühbirne, gegen eine neue Implementierung getauscht werden und in die vorgesehen ,,Fassung'' geschraubt werden.
+
+\begin{quote}
+\enquote{An den richtigen Punkten eingesetzt, kann die Nutzung der Polymorphie dadurch zu wesentlich flexibleren Programmen führen. Sie steigert damit die Wartbarkeit und Änderbarkeit unserer Software.}
+\cite[]{Lahres.2011}
+\end{quote}
+
+An dieser Stelle soll der Einsatz von Polymorphie in Go und Swift untersucht werden. 
+Nach Ansicht von \cite[]{WilliamKennedy.2013} ist Vererbung ohne Polymorphie nutzlos, und die Art der Implementierung von Interfaces in Go macht Vererbung überflüssig. 
+Als Grundlage dient das \autoref{lst:VererbungGo}. 
+
+\begin{listing}[H]
+\caption{Polymorphie in Go in Anlehung an \cite[]{WilliamKennedy.2013}}
+\label{lst:PolymorhpieGo}
+\begin{GoCode}
+package main
+
+import (
+    "fmt"
+)
+
+type Animal struct {
+    Name string
+    mean bool
+}
+
+type AnimalSounder interface {
+    MakeNoise()
+}
+
+type Dog struct {
+    Animal
+    BarkStrength int
+}
+
+type Cat struct {
+    Basics Animal
+    MeowStrength int
+}
+
+func (animal *Animal) PerformNoise(strength int, sound string) {
+    if animal.mean == true {
+        strength = strength * 5
+    }
+
+    for voice := 0; voice < strength; voice++ {
+        fmt.Printf("%s ", sound)
+    }
+
+    fmt.Println("")
+}
+
+func (dog *Dog) MakeNoise() {
+    dog.PerformNoise(dog.BarkStrength, "BARK")
+}
+
+func (cat *Cat) MakeNoise() {
+    cat.Basics.PerformNoise(cat.MeowStrength, "MEOW")
+}
+
+func MakeSomeNoise(animalSounder AnimalSounder) {
+    animalSounder.MakeNoise()
+}
+\end{GoCode}
+\end{listing}
+
+Im Unterschied zu \autoref{lst:VererbungGo} wurde in \autoref{lst:PolymorhpieGo} den Objekten ein Vehalten in Form von Methoden gegeben.
+Im Interface \emph{AnimalSounder} ist eine Funktion \emph{MakeNoise()} definiert. 
+Dieses Interface wird von \emph{Dog} (Zeile 28 - 39) und \emph{Cat} (Zeile 42 - 44) implementiert. 
+Sobald in Go ein Type ein Interface implementiert, repräsentiert dies das Interface. 
+Die Implementierungen des Interfaces rufen wiederum die auf dem Type \emph{Animal} implementierte Funktion \emph{PerformNoise} auf.
+Der Funktion \emph{MakeSomeNoise} wird ein Übergabeparameter vom Typ des Intefaces \emph{Animalsounder} übergeben. 
+Das Interface \emph{AnimalSounder} und die Funktion \emph{MakeSomeNoise} sorgen für das polymorphe Verhalten \cite[]{WilliamKennedy.2013}.  
+
+Das \autoref{lst:PolymorhpieGo} zeigt die Verwendung der Typen \emph{Dog} und \emph{Cat}.
+Dazu wird jeweils eine Instanz vom Type \emph{Dog} und vom Type \emph{Cat} erstellt. 
+Anschließend wird die Funktion \emph{MakeSomeNoise} jeweils mit den erzeugten Instanzen von \emph{Cat} und \emph{Dog} aufgerufen. 
+Dies ist möglich, da \emph{Cat} und \emph{Dog} das Interface \emph{AnimalSounder} implementieren. 
+
+\begin{listing}[H]
+\caption{Polymorphie in Go in Anlehung an \cite[]{WilliamKennedy.2013}}
+\label{lst:PolymorhpieGo}
+\begin{GoCode}
+package main
+
+func main() {
+    myDog := &Dog{
+        Animal{
+            "Rover", // Name
+            false,   // mean
+        },
+        2, // BarkStrength
+    }
+
+    myCat := &Cat{
+        Basics: Animal{
+            Name: "Julius",
+            mean: true,
+        },
+        MeowStrength: 3,
+    }
+
+    MakeSomeNoise(myDog)
+    MakeSomeNoise(myCat)
+}
+//Ausgabe:
+//BARK BARK
+//MEOW MEOW MEOW MEOW MEOW MEOW MEOW MEOW MEOW MEOW MEOW 
+//MEOW MEOW MEOW MEOW
+\end{GoCode}
+\end{listing}
+
+Um in Swift Polymorphie zu implementieren, werden \textit{protocols} eingesetzt.
+\textit{Protocols} sind ähnlich zu \textit{Interfaces} aus anderen Programmiersprachen wie Java und Go.
+Von Apple werden \textit{protocols} wie folgt definiert.
+
+\begin{quote}
+\enquote{A protocol defines a blueprint of methods, properties, and other requirements that suit a particular
+task or piece of functionality. The protocol can then be adopted by a class, structure, or enumeration
+to provide an actual implementation of those requirements. Any type that satisfies the requirements of
+a protocol is said to conform to that protocol.} \cite[S.341]{Apple.2017}
+\end{quote}
 
 
 
-
-\section{Polymorphismus}

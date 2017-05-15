@@ -9,8 +9,48 @@ In \autoref{tab:DatentypenGo} sind die in Go verfügbaren Datentypen aufgelistet
 
 \begin{table}[H]
     \centering
-    \includegraphics[width=\textwidth]{Tabellen/Datentypen_Go.pdf}
-    \caption{Datentypen in Go}
+    \begin{tabularx}{\textwidth}{|l|X|X|}
+    \hline 
+    \rowcolor[gray]{0.75} \textbf{Datentyp} & \textbf{Beschreibung} & \textbf{Wertebereich} \\
+    \hline
+    bool & Wahrheitswerte & true, false \\
+    \hline
+    uint8 & Positive 8-Bit Ganzzahlen & 0 - 255 \\
+    \hline
+    uint16 & positive 16-Bit Ganzzahlen & 0 - 65535 \\
+    \hline
+    uint32 & positive 32-Bit Ganzzahlen	& 0 - 4294967295 \\
+    \hline
+    uint64 & positive 64-Bit Ganzzahlen	& 0 - 18446744073709551615 \\
+    \hline
+    int8 & 8-Bit Ganzzahlen & -128 - 127 \\
+    \hline
+    int16 & 16-Bit Ganzzahlen & -32768 - 32767 \\
+    \hline
+    int32 & 32-Bit Ganzzahlen & -2147483648 - 2147483647 \\
+    \hline
+    int64 & 64-Bit Ganzzahlen & -9223372036854775808 - 9223372036854775807 \\
+    \hline
+    float32 & 32-Bit Gleitpunktzahlen nach IEEE-754	& \\
+    \hline
+    float64 & 64-Bit Gleitpunktzahlen nach IEEE-754	& \\
+    \hline
+    complex64 & Komplexe Zahlen mit float32 Real- und Imaginärteil & \\
+    \hline
+    complex128 & Komplexe Zahlen mit float64 Real- und Imaginärteil & \\
+    \hline
+    byte & Alias für uint8 & 0 – 255 \\
+    \hline
+    rune & Alias für int32 & -2147483648 - 2147483647 \\
+    \hline
+    uint & positive 32- oder 64-Bit Ganzzahlen & \\
+    \hline
+    int & 32- oder 64-Bit Ganzzahlen & \\	
+    \hline
+    uintptr & Zeiger (32- oder 64-Bit) & \\	
+    \hline
+    \end{tabularx}
+    \caption{Basisdatentypen in Go}
     \label{tab:DatentypenGo}
 \end{table}
 
@@ -39,25 +79,202 @@ func main() {
 \end{GoCode}
 \end{listing}
 
-Ebenso wie Go bietet Swift dem Programmierer an ein 
+In \autoref{tab:DatentypenSwift} ist eine Übersicht über von Swift zur Verfügung gestellten Basisdatentypen. 
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|X|}
+ \hline 
+ \rowcolor[gray]{0.75} \textbf{Datentyp} & \textbf{Beschreibung} & \textbf{Wertebereich} \\
+ \hline
+ Bool & Wahrheitswerte & \\ 
+ \hline 
+ UInt8 & Positive 8-Bit Ganzzahlen & 0 - 255\\
+ \hline 
+ UInt16	& positive 16-Bit Ganzzahlen & 0 - 65535\\
+ \hline
+ UInt32 & positive 32-Bit Ganzzahlen & 0 - 4294967295\\
+ \hline
+ UInt64	& positive 64-Bit Ganzzahlen & 0 - 18446744073709551615\\
+ \hline
+ Int8 & 8-Bit Ganzzahlen & -128 - 127 \\
+ \hline
+ Int16 & 16-Bit Ganzzahlen & -32768 - 32767 \\
+ \hline
+ Int32 & 32-Bit Ganzzahlen & -2147483648 - 2147483647 \\
+ \hline
+ Int64 & 64-Bit Ganzzahlen & -9223372036854775808 - 9223372036854775807 \\
+ \hline
+ Float & 32-Bit Gleitpunktzahlen & 6 Dezimalstellen \\
+ \hline 
+ Double & 64-Bit Gleitpunktzahlen & 15 Dezimalstellen \\
+ \hline
+\end{tabularx}
+\caption{Basisdatentypen in Swift}
+\label{tab:DatentypenSwift}
+\end{table}
+
+Ebenso wie Go bietet Swift dem Programmierer an eine ganzzahlige Variable mit einer bestimmten Größe von 8-, 16-, 32- oder 64-Bit zu definieren.
+Das \autoref{lst:SwiftTypdelaration} ist analog zu \autoref{lst:VariablenGo} implementiert.
+Auch Swift sieht in einer \emph{Int}-Variable auf einem 32-Bit-System und einer explizit als \emph{Int32} definierten Variablen einen Unterschied.
+Der Swit-Compiler ist in dieser Hinsicht jedoch nicht so restriktiv wie der Go-Compiler.
+Er gibt eine Warnung aus, mit dem Hinweis auf eine explizite Typumwandlung.
+Das Ergebnis wird aber wie gewünscht berechnet und ausgegeben. 
 
 \begin{listing}[H]
-\caption{}
+\caption{Implizite und explizite Datentypen in Swift}
+\label{lst:SwiftTypdelaration}
+\begin{SwiftCode}
+var x : Int = 8
+var y : Int32 = 4
+
+print(x+y) //Ausgabe: 12
+//Compiler-Meldung: 
+//warning: '+' is deprecated: Mixed-type addition is deprecated. 
+//Please use explicit type conversion.
+\end{SwiftCode}
 \end{listing}
 
-\begin{table}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Tabellen/Datentypen_Swift.pdf}
-    \caption{Datentypen in Swift}
-    \label{tab:DatentypenSwift}
-\end{table}
+Von \cite[S.30]{Hoffman.2017} wird empfohlen, soweit es keinen speziellen Grund gibt einen ganzahligen Typ mit einer expliziten Größe zu definieren, die impliziten Typen \emph{Int} und \emph{UInt} zu benutzen.
+Diese Empfehlung kann grundsätzlich sowohl für Swift als auch Go ausgesprochen werden.
+Jedoch muss der unterschiedliche Wertebereich bei 32-Bit und 64-Bit Systemen beachtet werden. 
 
 \section{Type Inference}
 \label{sec:TypeInference}
-Beide Sprachen beherrschen Type Inference. 
-Durch Type Inference ist es nicht nötig den Datentyp einer Variable anzugeben, sondern der Compiler erkennt diesen anhand des zugewiesenen Wertes. \cite[S.307]{Hinzberg.2015}
+% Beide Sprachen beherrschen Type Inference. 
+% Durch Type Inference ist es nicht nötig den Datentyp einer Variable anzugeben, sondern der Compiler erkennt diesen anhand des zugewiesenen Wertes. \cite[S.307]{Hinzberg.2015}
+In den vorherigen Codebeispielen (\ref{lst:VariablenGo} und \ref{lst:SwiftTypdelaration}) wurden die Variablen explizit mit einem Datentyp definiert. Jedoch beherrschen sowohl Go als auch Swift einen Mechanismus der \emph{Type Inference} genannt wird. 
+\emph{Type Inference} ermöglicht es, den Datentyp der Variable bei der Definition weg zu lassen. 
+Stattdessen ermittelt der Compiler anhand des Initialwerts, um welchen Datentyp es sich handelt \cite[S.28]{Hoffman.2017}.
+In \autoref{lst:TypeInferenceSwift} ist zu sehen, wie dies in Swift aussieht.
+
+\begin{listing}
+\caption{Type Inference in Swift}
+\label{lst:TypeInferenceSwift}
+\begin{SwiftCode}
+var a = 1
+var b : Int = 2
+
+print(type(of: a)) //Ausgabe: Int
+print(type(of: b)) //Ausgabe: Int
+\end{SwiftCode}
+\end{listing}
+
+Bei der Definition der Variablen \emph{a} in Zeile 1 ist kein Datentyp angegeben, während bei der Definition der Variablen \emph{b} explizit der Datentyp \emph{Int} angegeben ist.
+Die anschließende Überprüfung mit der \emph{type(of:)}-Funktion ergibt, dass beide Variablen vom Typ \emph{Int} sind.
+
+Das \autoref{lst:TypeInferenceGo} zeigt ein Beispiel für \emph{Type Inference} in Go. 
+In Zeile 9 wird eine Variabe \emph{a} ohne Angabe eines Datentyps deklariert und mit dem Wert 1 initialisiert.
+Die Variable \emph{b} in Zeile 10 wird explizit mit dem Datentyp \emph{int} deklariert.
+Zur Überprüfung soll der Datentyp der Variablen ausgegeben werden. 
+Hierzu muss in Go das Package \emph{reflect} importiert werden. \todo{Evtl. nähere Infos zu Reflection}
+Anschließend kann mit der Funktion \emph{reflect.TypeOf()} der Datentyp einer Variablen ermittelt werden (Zeile 12 und 13).
+Die Ausgabe ergibt, das beide Variablen vom Typ \emph{int} sind. 
+Die Variable \emph{a} wird anhand ihres Initialwerts korrekt als \emph{int} erkannt. 
+
+\begin{listing}
+\caption{Type Inference in Go \todo{Package und Import drin lassen?}}
+\label{lst:TypeInferenceGo}
+\begin{GoCode}
+package main
+
+import (
+    "fmt"
+    "reflect"
+)
+
+func main() {
+    var a = 1
+    var b int = 2
+	
+    fmt.Println(reflect.TypeOf(a)) //Ausgabe: int
+    fmt.Println(reflect.TypeOf(b)) //Ausgabe: int
+}
+\end{GoCode}
+\end{listing}
+
+\emph{Type Inference} kann dem Programmierer oftmals die Angabe des Datentyps ersparen. 
+Immer dann wenn eine Variable oder Konstante mit einem \Gls{Literal} initialisiert wird, kann der Compiler den verwendeten Datentyp eigenständig feststellen. 
+Jedoch verwendet der Compiler immer den Datentyp mit dem größten Wertebereich.
+In \autoref{lst:TypeInferenceSwift2} wird die Variabe \emph{a} mit dem Wert 1.1 intialisiert.
+Der Compiler verwendet für die Variable den Datentyp \emph{Double}.
+Die Variable \emph{b} wird explizit mit dem Datentyp \emph{Float} deklariert und mit dem gleichen Wert wie die Variable \emph{a} initialisiert.
+
+\begin{listing}
+\caption{Beispiel für Type Inference in Swift}
+\label{lst:TypeInferenceSwift2}
+\begin{SwiftCode}
+var a = 1.1
+var b : Float = 1.1
+
+print(type(of: a)) //Ausgabe: Double
+print(type(of: b)) //Ausgabe: Float
+\end{SwiftCode}
+\end{listing}
+
+Der Programmierer muss bei der Entwicklung abwägen, ob er einer Variablen explizit einen Datentyp zuweist oder ob er dies dem Compiler überlässt. 
+Dabei muss auf den Wertebereich einer Variablen und dem damit verbundenen Verbrauch an Arbeitsspeicher geachtet werden. 
+Es sollte entschieden werden ob entweder konsequent \emph{Type Inference} verwendet wird, oder ob Variablen explizit mit einem Datentyp deklariert werden. 
+Bei größeren Projekten sollte eine solche Entscheidung in den \emph{Coding Guidelines} festgehalten werden.
 
 \section{Zeichenketten}
+Zeichenketten, im Folgenden auch Strings genannt, und deren Verarbeitung sind ein wichtiger Bestandteil einer Programmiersprache. 
+Quellcode-Dateien in Go müssen immer in UTF-8 codiert sein. 
+Dementsprechend werden Zeichenketten in Go auch als UTF-8 interpretiert und kann Unicode-Zeichen enthalten \cite[S.117]{Donovan.2016}.
+
+\begin{listing}
+\caption{Strings in Go}
+\label{lst:StringsGo}
+\begin{GoCode}
+var s string = "Hallo Welt"
+var s2 string = `Hallo Welt`
+\end{GoCode}
+\end{listing}
+
+\autoref{lst:StringsGo} zeigt die Deklaration und Initialisierung zweier Variablen mit einem String-Literal in Go.
+Beide Variablen werden mit dem gleichen String-Literal initialisiert. 
+Das String-Literal von Variable \emph{s} steht zwischen zwei Anführungszeichen (") während das String-Literal von Variable \emph{s2} zwischen zwei Backticks (`) steht.
+Bei der Verwendung der Anführungszeichen können Escape-Sequenzen (z.B. {\textbackslash}n für einen Zeilenumbruch) verwendet werden.
+Bei der Verwendung von Backticks handelt es sich um \emph{raw string literals}. 
+Werden in einem \emph{raw string literal} Escape-Sequenzen verwendet, werden diese als normaler Text interpretiert \cite[S.118]{Donovan.2016}.
+Das Package \emph{strings} der Standardlibrary von Go stellt eine Reihe an Funktionen bereit, um mit Strings zu arbeiten.
+
+Die Deklaration und Initialisierung einer String-Variable in Swift ist im \autoref{lst:StringsSwift} zu sehen.
+Ein String kann in Swift ebenfalls Escape-Sequenzen (z.B. {\textbackslash}n für Zeilenumbruch) enthalten.
+Swift bietet derzeit keine Möglichkeit mit \emph{raw string literals} zu arbeiten. 
+Die erweiterten String-Funktionen sind in Swift verfügbar, ohne eine Library zu laden.
+
+\begin{listing}
+\caption{Strings in Swift}
+\label{lst:StringsSwift}
+\begin{SwiftCode}
+var s : String = "Hallo Welt"
+\end{SwiftCode}
+\end{listing}
+
+Die Möglichkeit von Go, mit \emph{raw string literals} zu arbeiten, stellt einen Vorteil gegenüber Swift dar. 
+Ein Beispiel für den Vorteil von \emph{raw string literals} wäre, das Speichern eines Ordner-Pfades in einem Windows-Dateisystem.
+\autoref{lst:StringsSwift2} zeigt, wie das Speichern eines Ordner-Pfades in Swift aussieht.
+Um bei der Intialisierung einen gültigen String zu erhalten, muss allen Backslashes (\textbackslash) ein weiterer Backslash vorangestellt werden. 
+
+\begin{listing}
+\caption{Strings in Swift}
+\label{lst:StringsSwift2}
+\begin{SwiftCode}
+var s : String = "C:\\Windows\\System32\\"
+\end{SwiftCode}
+\end{listing}
+
+In \autoref{lst:StringsGo2} wird die gleiche Aufgabe in Go mit einem \emph{raw string literal} gelöst. 
+Die Lesbarkeit des Quelltextes wird durch den Einsatz von \emph{raw string literals} verbessert.
+
+\begin{listing}
+\caption{Strings in Go}
+\label{lst:StringsGo2}
+\begin{GoCode}
+var s string = `C:\Windows\System32\`
+\end{GoCode}
+\end{listing}
 
 \section{Arrays}
 

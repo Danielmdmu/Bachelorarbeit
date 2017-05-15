@@ -1,19 +1,20 @@
 \chapter{Syntax}
 Die Akzeptanz einer Programmiersprache steht oftmals in Zusammenhang mit der Syntax. 
-Ein Großteil der heutigen Hochsprachen ähneln in ihrer Syntax der Programmiersprache C. 
-Moderne Programmiersprachen versuchen sich teilweise von diesem Muster zu lösen um zum Beispiel die Lesbarkeit des Quelltextes zu verbessern.
+Ein Großteil der heutigen Hochsprachen stammen in ihrer Syntax von der Programmiersprache C ab \cite{Wikipedia.ListProgrammingLanguages}. 
+Moderne Programmiersprachen, wie auch Go und Swift, versuchen sich teilweise von diesem Muster zu lösen um zum Beispiel die Lesbarkeit des Quelltextes zu verbessern.
+Dies äußert sich beispielsweise darin, dass das Semikolon, welches in C dafür zuständig ist das Ende einer Anweisung zu kennzeichnen, weggelassen werden kann (Siehe \autoref{sec:Semikolons} \nameref{sec:Semikolons}).
 
-\section{Grundstruktur}
+\section{Grundaufbau einer Quellcodedatei}
 Um den Quelltext einer Programmiersprache in ein lauffähiges Programm zu übersetzen, muss dieser bestimmte Grundvoraussetzungen erfüllen.
 % Im folgenden Abschnitt soll gezeigt werden welche Grundstruktur an Quelltext von den Compilern von Go und Swift benötigt werden. 
 
-Bei der Einführung in eine neue Programmiersprache wird meist mit dem bekannten ,,Hallo Welt''-Beispiel begonnen.
-Dieses einfache Beispiel veranschaulicht sehr gut, welche Grundstruktur eine Quelltext-Datei aufweisen muss.
+Bei dem Erlernen einer neuen Programmiersprache wird meist mit dem bekannten ,,Hallo Welt''-Beispiel begonnen.
+Dieses einfache Beispiel veranschaulicht sehr gut, welche Grundstruktur eine Quellcodeatei aufweisen muss.
 
 Im \autoref{lst:helloWorldGo} ist ein ,,Hallo Welt''-Beispiel in Go zu sehen.
 Der Quelltext beginnt mit der \emph{package}-Deklaration.
 In Go ist der Quelltext in \emph{Packages} organisiert. 
-Dies ist ähnlich zu \emph{Namespaces} oder \emph{Modules} in anderen Programmiersprachen.
+Dies ist ähnlich zu \emph{Namespaces} in C\# oder \emph{Packages} in Java.
 Die Deklaration des Packages main stellt einen Spezialfall dar und deklariert eine eigenständig ausführbare Programmdatei.
 Die \emph{Import}-Deklaration in Zeile 3 zeigt dem Compiler welche \emph{Packages} benötigt werden.
 Das \emph{fmt}-Package wird für die Ausgabe auf der Konsole benötigt.
@@ -32,15 +33,17 @@ func main() {
 \end{GoCode}
 \end{listing}
 
-Go benötigt exakt die Pakete die im Quelltext verwendet werden, andernfalls kann der Quelltext nicht kompiliert werden. 
-Im Gegensatz zu den meisten anderen Programmiersprachen bricht der Compiler auch ab, wenn \emph{Packages} importiert werden, die im Quelltext nicht verwendet werden.
+Go benötigt exakt die Pakete, die im Quelltext verwendet werden, andernfalls kann der Quelltext nicht kompiliert werden. 
+Im Gegensatz zu den meisten anderen Programmiersprachen bricht der Compiler ab, wenn \emph{Packages} importiert werden, die im Quelltext nicht verwendet werden.
 Ähnlich zu anderen Programmiersprachen benötigt ein ausführbares Programm eine \emph{main}-Funktion.
 Diese wird in Zeile 5 deklariert.
 In Zeile 6 wird die Funktion \emph{Println} aus dem Package fmt aufgerufen, welche die Meldung ,,Hallo Welt - das ist Go'' auf der Konsole ausgibt \cite{Donovan.2016}.
 
 
 %Swift benötigt für das gleiche Ergebnis verhältnismäßig wenige Anweisungen. 
-Wie in \autoref{lst:helloWorldSwift} zu sehen, erledigt Swift die Ausgabe des Textes ,,Hallo Welt - das ist Swift'' mit nur einer Zeile Quelltext. Es müssen keine Bibliotheken eingebunden werden. Da sich die \emph{print}-Anweisung nicht in einer Funktion befindet, muss auch keine \emph{main}-Funktion definiert werden\cite{Apple.2017}.
+Wie in \autoref{lst:helloWorldSwift} zu sehen, benötigt Swift für die Ausgabe des Textes ,,Hallo Welt - das ist Swfit'' nur eine Zeile Quelltext.
+Es müssen keine Bibliotheken eingebunden werden. Da sich die \emph{print}-Anweisung nicht in einer Funktion befindet, muss auch keine \emph{main}-Funktion definiert werden\cite{Apple.2017}.
+Auch Swift wird kompiliert.
 
 \begin{listing}[H]
 \caption{Hallo Welt in Swift}
@@ -58,7 +61,7 @@ Die Definition von Variablen und Konstanten in Go ist in \autoref{lst:VariableGo
 In Zeile 1 und Zeile 2 werden Variablen definiert und initialisiert.
 Über das Schlüsselwort \emph{var} wird dem Compiler mitgeteilt, dass es sich um eine Variable handelt.
 Eine Konstante wird mit dem Schlüsselwort \emph{const} definiert.
-Im Gegensatz zu Zeile 2 ist zur Variable \emph{variable1} kein Datentyp angegben. 
+Im Gegensatz zu Zeile 2 ist zur Variable \emph{variable1} kein Datentyp angegeben. 
 Der Datentyp wird vom Compiler selbstständig erkannt. 
 Dieser Mechanismus wird \emph{Type Inference} genannt und wird im \autoref{sec:TypeInference} \nameref{sec:TypeInference} näher erläutert.
 
@@ -89,15 +92,15 @@ let konstante = "Konstante in Swift"
 
 \section{Funktionen}
 Eine Funktion ermöglichte es eine Abfolge von Anweisungen zusammenzufassen und diese in einem Programm auch mehrmals aufzurufen. 
-Mit Funktionen kann eine Aufgabe in kleine Teile aufgeilt werden.
+Mit Funktionen kann eine Aufgabe in kleine Teile aufgeteilt werden.
 Bei der Verwendung einer Funktion müssen keine Details zur Implementierung vorhanden sein.
 Funktionen sind somit ein wichtiger Teil jeder Programmiersprache \cite{Kennedy.2016}
 
 Im \autoref{lst:FunktionGo} ist der Grundaufbau einer Funktion in Go dargestellt.
 Mit dem Schlüsselwort \emph{func} wird eine Funktion eingeleitet, gefolgt vom Namen der Funktion.
-Eine Liste an Parametern wird in Klammern angegeben. 
+Eine Aufzählung an Parametern wird in Klammern angegeben. 
 Anschließend kann eine Liste von Rückgabewerte definiert werden.
-Der Funktions-Körper befindet sich in geschweiften Klammern.
+Der Funktionskörper befindet sich in geschweiften Klammern.
 
 \begin{listing}
 \caption{Aufbau einer Funktion in Go \cite{Donovan.2016}}
@@ -113,7 +116,7 @@ In \autoref{lst:BeispielFunktionGo} ist die Definition einer einfachen Funktion 
 Die Funktion \emph{add} übernimmt zwei Parameter vom Typ \emph{int} und gibt einen Wert vom Typ \emph{int} zurück.
 Als Rückgabewert liefert die Funktion die Summe der beiden Parameter.
 Bei nur einem Rückgabewert ist die Klammer um den Rückgabewert optional.
-Sobald ein Rückgabewert definiert ist, erwartet der Compiler im Funktionskörper das \emph{return} Schlüsselwort
+Sobald ein Rückgabewert definiert ist, erwartet der Compiler im Funktionskörper das \emph{return} Schlüsselwort.
 
 \begin{listing}
 \caption{Beispiel-Funktionen in Go}
@@ -230,5 +233,61 @@ Die Rückgabewerte der Funktion können einer Variablen zugewiesen werden (Zeile
 Anschließend kann über den Namen des Rückgabeparameters auf dessen Wert zurückgegriffen werden. 
 Diese Art des Zugriffs auf die einzelnen Rückgabwerte ist in Swift eleganter gelöst als in Go.
 
+\section{Semikolons}
+\label{sec:Semikolons}
+Laut \cite{Wikipedia.ListProgrammingLanguages} gehören Go und Swift zu den Sprachen, die, was die Syntax angeht, von der Programmiersprache C abstammen.
 
+In C muss ein Semikolon am Ende jeder Zeile stehen, um das Ende einer Anweisungen zu kennzeichnen.
+In Go und Swift spielt das Semikolon eine eher untergeordnete Rolle.
+In Swift sind Semikolons optional. 
+Das \autoref{lst:SemicolonsSwift} zeigt zwei gültige Zeilen Quellcode in Swift.
+
+\begin{listing}
+\caption{Semikolons in Swift \cite[S.15]{Hoffman.2017}}
+\label{lst:SemicolonsSwift}
+\begin{SwiftCode}
+print("Hello from Swift")
+print("Hello from Swift");
+\end{SwiftCode}
+\end{listing}
+
+\cite{Hoffman.2017} empfhielt in Swift keine Semikolons zu verwenden. 
+Go benötigt ebenfalls keine Semikolons am Ende einer Quellcode-Zeile. 
+Der Grund dafür wird in den offiziellen FAQ von Go erläutert. 
+
+\begin{quote}
+\enquote{
+Semicolons, however, are for parsers, not for people, and we wanted to eliminate them as much as possible.
+}\cite{Golang.FAQ}
+\end{quote}
+
+In Go setzt der Lexer(\todo{Glossar?}) an jedes Zeilenende, welches das Ende eines Ausdrucks sein kann, automatisch ein Semikolon. 
+Dies hat zur Folge das ein gewisser Stil zur Klammerung eingehalten werden muss \cite{Golang.FAQ}.
+
+\begin{listing}[H]
+\caption{Semikolons in Go}
+\label{lst:SemicolonGo}
+\begin{GoCode}
+package main
+
+func add(a int, b int) (int){
+    return a + b
+}
+
+func sub(a int, b int) (int)
+{
+    return a - b
+}
+//Compiler-Ausgabe: 
+//main.go:8: syntax error: unexpected semicolon or newline before {
+//Gofmt-Ausgabe:
+//8:1: expected declaration, found '{'
+\end{GoCode}
+\end{listing}
+
+In \autoref{lst:SemicolonGo} werden zwei Funktionen definiert. 
+Der Go-Compiler gibt beim Kompilieren die in Zeile 12 dargestellte Fehlermeldung aus.
+Bei der Funktion \emph{sub} wurde die öffnende Klammer in die nächste Zeile verschoben.
+Dies ist in Go nicht möglich. 
+Go bietet mit \emph{gofmt} ein Tool an, mit dem der Go-Quellcode automatisch formatiert werden kann. Bei Ausführung von \emph{gofmt} auf dem Quellcode aus \autoref{lst:SemicolonGo} wird die Fehlermeldung in Zeile 14 ausgegeben. 
 
