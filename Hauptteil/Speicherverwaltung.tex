@@ -1,6 +1,32 @@
 \chapter{Speicherverwaltung}
-
-\section{Speichermodell}
+Speicherverwaltung hat einen großen Einfluss darauf, wie eine Programmiersprache in der Praxis arbeitet. 
+Besonders in C{\textbackslash}C++ muss der Entwickler viel Aufwand in das reservieren und freigeben von Speicher investieren.
+Die heutigen Anforderung an eine nebenläufige objektorientierte Programmiersprache erfordern eine automatische Speicherverwaltung, da der Besitz eines Speicherfragments bei nebenläufigen Ausführungen nur schwer manuell zu verwalten ist \cite{RobPike.2012}.
 
 \section{Garbage Collection}
+Go verwendet zur Speicherverwaltung einen \textit{Garbage Collector}. 
+Eine Meinung, die unter Entwicklern vertreten wird ist, dass \textit{Garbage Collection} Leistung kostet. 
+Die FAQ von Google liefert auf die Fragestellung, warum Go mit \textit{Garbage Collection} arbeitet, folgende Antwort.
+
+\begin{quote}
+\enquote{We feel it's critical to eliminate that programmer overhead, and advances in garbage collection technology in the last few years give us confidence that we can implement it with low enough overhead and no significant latency.}\cite{Golang.FAQ}
+\end{quote}
+
+Go bietet dem Entwickler keine Möglichkeit explizit Speicher freizugeben, nur der \textit{Garbage Collector} kann Speicher freigeben \cite{RobPike.2012}.
+Der \textit{Garbage Collector} von Go ist als \textit{tri-color}, \textit{mark-sweep Collector} implementiert.
+Auf dem offiziellen Go Blog wir die Funktionsweise folgendermaßen beschrieben
+
+\begin{quote}
+\enquote{In a tri-color collector, every object is either white, grey, or black and we view the heap as a graph of connected objects. At the start of a GC cycle all objects are white. The GC visits all roots, which are objects directly accessible by the application such as globals and things on the stack, and colors these grey. The GC then chooses a grey object, blackens it, and then scans it for pointers to other objects. When this scan finds a pointer to a white object, it turns that object grey. This process repeats until there are no more grey objects. At this point, white objects are known to be unreachable and can be reused.} \cite{Go.GC}
+\end{quote}
+
+Swift verwendet keinen \textit{Garbage Collector} zur Speicherverwaltung, sondern \textit{Automatic Reference Counting}(ARC).
+\textit{Automatic Reference Counting} merkt sich die Referenzen auf Instanzen von Klassen.
+Zeigt keine Referenz auf die Instanz einer Klasse, wird diese Instanz von \textit{Automatic Reference Counting} zerstört und der Speicher frei gegeben \cite[S.137]{Hoffman.2017}. 
+Dieses Verhalten von \textit{Automatic Reference Counting} funktioniert in den meisten Fällen.
+In seltenen Fällen muss der Entwickler seinen Quelltext anpassen um das Verhalten von \textit{Automatic Reference Counting} zu verbessern.
+
+Wie bereits zu Anfang dieses Kapitels erwähnt, ist Speicherverwaltung besonders hinsichtlich nebenläufiger Programmierung ein wichtiger Punkt.
+Go und Swift nehmen dem Programmierer durch ihre Mechanismen zur Speicherverwaltung einen Großteil der Arbeit ab. 
+Ein manuelles Eingreifen in die Speicherverwaltung ist nur dann nötig, wenn im Besonderen auf Leistung geachtet werden muss oder der Programmierer gezielt die Speicherverwaltung beinflussen möchte.
 

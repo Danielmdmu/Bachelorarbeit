@@ -1,9 +1,137 @@
 \chapter{Funktionale Programmierung}
+Piepmeyer beantwortet in \cite[S.6]{Piepmeyer.2010} die Frage ,,Wann ist eine Sprache Funktional'' folgendermaßen:
+
+\begin{itemize}
+    \item In funktionalen Sprachen können wir Funktionen anonym definieren
+    \item Funktionen werden wie alle anderen Daten behandelt
+\end{itemize}
+
+Von Esser werden in \cite[S.243]{Esser.2011} zwei Begriffe genannt, welche funktionale Programmiersprachen erfüllen und bei prozeduralen Programmiersprachen fehlen.
+
+\begin{itemize}
+    \item First-Class Function
+    \item High-Order Function
+\end{itemize}
+
+Von Piepmeyer wird ein erheblicher Vorteil der funktionalen Programmierung genannt.
+
+\begin{quote}
+\enquote{In der funktionalen Programmierung hängt das Ergebnis einer Berechnung nicht vom Zeitpunkt der Berechnung ab. Aufgrund dieser referentiellen Transparenz können funktionale Programme leicht parallelisiert werden.} \cite[S.13]{Piepmeyer.2010}
+\end{quote}
+
+Dieses Kapitel soll zeigen, ob mit Go und Swift funktional programmiert werden kann. 
+
+\section{Anonyme Funktionen}
+Ein Merkmal von funktionalen Programmiersprachen ist die Möglichkeit eine Funktion anonym, also ohne Namen, zu definieren \cite[S.28]{Piepmeyer.2010}.
+Anonyme Funktionen sind auch als \textit{Closures} beziehungsweise \textit{Lambda Expressions} bekannt.
+\cite[S.219]{Hoffman.2017} sieht Anonyme Funktionen als Datentyp, der anstatt beispielsweise ganzzahligen Werten, einen Block Quellcode beinhaltet.
+
+\begin{listing}[H]
+\caption{Anonyme Funktion in Swift Quelle: \cite[S.220]{Hoffman.2017}}
+\label{lst:SwiftClosure}
+\begin{SwiftCode}
+let clos1 = {
+    () -> Void in
+    print("Hello World")
+}
+\end{SwiftCode}
+\end{listing}
+
+Ein Beispiel für eine Anonyme Funktion in Go ist in \autoref{lst:GoFirstClassFunctions} in Zeile 15 - 17 zu sehen.
 
 \section{First-Class Functions}
+Um ein Gefühl für den Begriff \textit{First-Class Function} zu bekommen, leitet \cite[S.243f]{Esser.2011} das Thema mit einer Definition des Begriff \textit{First-Class Objects} aus der Objektorientierung ein.
+Objekte werden als Werte gesehen, die über Referenzen, Parameter oder als Ergebnis weitergereicht werden.
+Die Methoden eines Objekts sind nicht eigenständig sondern können nur indirekt über das Objekt weitergegeben werden.
+Die Sichtweise \textit{First-Class Function} dreht diese Sichtweise um.
+Funktionen sind Werte, die über Referenzen, Parameter oder als Ergebnis an andere Funktionen weitergegeben werden.
+Funktionen sind eigenständig und nicht an Objekte gebunden. 
 
-\section{High-Oder Functions}
+\autoref{lst:GoFirstClassFunctions} zeigt die Anwendung von \textit{First-Class Functions} in Go.
 
-\section{Referenzielle Integrität}
+\begin{listing}[H]
+\caption{\textit{First-Class Functions} in Go Quelle:\cite[]{Go.FirstClassFunctions}}
+\label{lst:GoFirstClassFunctions}
+\begin{GoCode}
+package main
 
-\section{Closures}
+import "fmt"
+
+func CallWith(f func(string), who string) {
+    f(who)
+}
+
+type FunctionHolder struct {
+    Function func(string)
+}
+
+func main() {
+    holder :=   FunctionHolder{ 
+                    func(who string) {
+                        fmt.Println("Hello,", who) 
+                    }
+                }
+                
+    CallWith(holder.Function,"ernest")
+}
+\end{GoCode}
+\end{listing}
+
+In Zeile 5 - 7 wird eine Funktion \textit{CallWith} definiert, welche als Parameter eine Funktion und einen String übernimmt und anschließend die übergebene Funktion mit dem dem übergebenen String aufruft.
+In Zeile 9 - 1 wird eine neuer Typ \textit{FunctionHolder} definiert, welcher eine Funktion mit einem String als Parameter aufnimmt.
+In der \textit{main}-Funktion (Ab Zeile 13) wird zuerst eine neue Instanz des Typs \textit{FunctionHolder} erstellt und dieser mit einer anonymen Funktion welche einen String entgegen nimmt initialisiert.
+Anschließend wird die Funktion \textit{CallWith} mit der in \textit{holder} gespeicherten Funktion und dem Literal ,,ernest'' aufgerufen.
+Als Ergebnis wird ,,Hello, ernest'' ausgegeben. 
+
+\section{High-Order Functions}
+\textit{High-Order Functions} sind Funktionen, die eine Funktion als Übergabeparameter haben oder eine Funktion als Ergebnis liefern \cite[S.63]{Piepmeyer.2010}.
+
+Im \autoref{lst:GoHighOrderFunctions} ist ein Beispiel für \textit{High-Order Functions} in Go zu sehen. 
+In Zeile 11 wird ein neuer Type Namens \textit{strategy} definiert. 
+Der Datentyp von \textit{strategy} ist eine Funktion.
+Der Rückgabewert von \textit{strategy} ist vom Typ \textit{action} (Zeile 8) welcher wiederum eine Funktion darstellt.
+
+\begin{listing}[H]
+\caption{\textit{High-Order Functions} in Go Quelle: \cite[]{Go.HighOrderFunctions}}
+\label{lst:GoHighOrderFunctions}
+\begin{GoCode}
+// A score includes scores accumulated in previous turns for each player,
+// as well as the points scored by the current player in this turn.
+type score struct {
+    player, opponent, thisTurn int
+}
+
+// An action transitions stochastically to a resulting score.
+type action func(current score) (result score, turnIsOver bool)
+
+// A strategy chooses an action for any given score.
+type strategy func(score) action
+\end{GoCode}
+\end{listing}
+
+\autoref{lst:SwiftHighOrderFunctions} zeigt ein Beispiel für \textit{High-Order Functions} in Swift.
+
+\begin{listing}[H]
+\caption{\textit{High-Order Functions} in Swift Quelle: \cite[]{Swift.HighOrderFunctions}}
+\label{lst:SwiftHighOrderFunctions}
+\begin{SwiftCode}
+func aHigherOrderFunction(closure: () -> Void) {
+    closure()
+}
+
+let myClosure = {
+    print("Hello!")
+}
+
+aHigherOrderFunction(myClosure) // prints: Hello
+\end{SwiftCode}
+\end{listing}
+
+Die Funktion \textit{aHigherOrderFunction} übernimmt als Parameter eine anonyme Funktion mit dem Name \textit{closure}.
+In Zeile 5 - 7 wird eine anonyme Funktion definiert und der Konstante \textit{myClosure} zugewiesen.
+In Zeile 9 wird \textit{myClosure} der Funktion \textit{aHigherOrderFunction} übergeben.
+
+% \section{Referentielle Transparenz}
+% Als \textit{referentielle Transparenz} bezeichnet man die Eigenschaft einer Funktion, nur von den Werten seiner Teilfunktionen abhängig zu sein und nicht vom Zeitpunkt der Berechnung \cite[S.11]{Piepmeyer.2010}.
+
+

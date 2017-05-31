@@ -96,11 +96,11 @@ class Animal{
 }
 
 class Cat : Animal{
-    var MeowStrenght : Int = 0
+    var MeowStrength : Int = 0
 }
 
 class Dog : Animal{
-    var BarkStrenght : Int = 0
+    var BarkStrength : Int = 0
 }
 \end{SwiftCode}
 \end{listing}
@@ -391,14 +391,14 @@ Die Implementierungen des Interfaces rufen wiederum die auf dem Type \emph{Anima
 Der Funktion \emph{MakeSomeNoise} wird ein Übergabeparameter vom Typ des Intefaces \emph{Animalsounder} übergeben. 
 Das Interface \emph{AnimalSounder} und die Funktion \emph{MakeSomeNoise} sorgen für das polymorphe Verhalten \cite[]{WilliamKennedy.2013}.  
 
-Das \autoref{lst:PolymorhpieGo} zeigt die Verwendung der Typen \emph{Dog} und \emph{Cat}.
+Das \autoref{lst:PolymorhpieGo2} zeigt die Verwendung der Typen \emph{Dog} und \emph{Cat}.
 Dazu wird jeweils eine Instanz vom Type \emph{Dog} und vom Type \emph{Cat} erstellt. 
 Anschließend wird die Funktion \emph{MakeSomeNoise} jeweils mit den erzeugten Instanzen von \emph{Cat} und \emph{Dog} aufgerufen. 
 Dies ist möglich, da \emph{Cat} und \emph{Dog} das Interface \emph{AnimalSounder} implementieren. 
 
 \begin{listing}[H]
 \caption{Polymorphie in Go in Anlehung an \cite[]{WilliamKennedy.2013}}
-\label{lst:PolymorhpieGo}
+\label{lst:PolymorhpieGo2}
 \begin{GoCode}
 package main
 
@@ -440,5 +440,110 @@ to provide an actual implementation of those requirements. Any type that satisfi
 a protocol is said to conform to that protocol.} \cite[S.341]{Apple.2017}
 \end{quote}
 
+In \autoref{lst:PolymorphieSwift1} ist die Swift-Implementierung von \autoref{lst:PolymorhpieGo} abgebildet.
+Ähnlich einer Klasse kann ein \textit{Protocol} in Swift Eigenschaften und Methoden haben. 
+In Zeile 17 - 19 wird das Protocol \textit{AnimalSounder} definiert. 
+Das Protocol \textit{AnimalSounder} hat nur eine Methode \textit{MakeNoise()}. 
+Die Methode \textit{MakeNoise()} wird lediglich mit ihrer Signatur definiert. 
+Es wird keine Methodenkörper definiert. 
+Die Implementierung der Methode \textit{MakeNoise()} muss in den Klassen \textit{Dog} und \textit{Cat} geschehen.
+In Zeile 1 - 15 wird die Basisklasse \textit{Animal} definiert. 
+Die Methode \textit{PerformNoise} erwartet die beiden Übergabeparameter \textit{strength} und \textit{sound}.
+Die Klassen \textit{Dog} und \textit{Cat} erben von der Basisklasse \textit{Animal}.
+Bei der Implementierung der Methode \textit{MakeNoise} in den Klassen \textit{Dog} und \textit{Cat} wird die von der Klasse \textit{Animal} geerbte Methode \textit{PerformNoise} mit den spezifischen Parametern aufgerufen.
 
+\begin{listing}[H]
+\caption{Polymorphie in Swift}
+\label{lst:PolymorphieSwift1}
+\begin{SwiftCode}
+class Animal{
+    var Name : String = ""
+    var mean : Bool = false
+	
+    func PerformNoise(strength: Int, sound: String){
+        var newStrength = strength
+        if mean == true{
+            newStrength = strength * 5
+        }
+		
+        for _ in 0...newStrength{
+            print(sound)
+        }
+    }
+}
 
+protocol AnimalSounder{
+    func MakeNoise()
+}
+
+class Dog : Animal, AnimalSounder{
+    var BarkStrength : Int = 0
+	
+    func MakeNoise() {
+        PerformNoise(strength: BarkStrength, sound: "BARK")
+    }
+}
+
+class Cat : Animal, AnimalSounder{
+    var MeowStrength : Int = 0
+	
+    func MakeNoise() {
+        PerformNoise(strength: MeowStrength, sound: "MEOW")
+    }
+}
+\end{SwiftCode}
+\end{listing}
+
+\autoref{lst:PolymorphieSwift2} zeigt die Verwendung der Klassen aus \autoref{lst:PolymorphieSwift1}.
+Die Beiden Objekte \textit{myDog} und \textit{myCat} werden mit den gleichen Werten initialisiert, welche auch in der Implementierung in Go in \autoref{lst:PolymorhpieGo2} verwendet werden..
+In Zeile 11 und 12 wird bei beiden Objekten die Methode \textit{MakeNoise} aufgerufen, welche zu der Ausgabe in Zeile 15 - 17 führt. 
+
+\begin{listing}[H]
+\caption{Polymorphie in Swift}
+\label{lst:PolymorphieSwift2}
+\begin{SwiftCode}
+var myDog = Dog()
+myDog.Name = "Rover"
+myDog.mean = false
+myDog.BarkStrength = 2
+
+var myCat = Cat()
+myCat.Name = "Julius"
+myCat.mean = true
+myCat.MeowStrength = 3
+
+myDog.MakeNoise()
+myCat.MakeNoise()
+
+//Ausgabe: 
+//BARK BARK 
+//MEOW MEOW MEOW MEOW MEOW MEOW MEOW MEOW MEOW MEOW MEOW 
+//MEOW MEOW MEOW MEOW 
+\end{SwiftCode}
+\end{listing}
+
+Es kann sowohl in Go als auch in Swift objektorientiert programmiert werden. 
+Allerdings ist Go keine vollwertige objektorientierte Programmiersprache. 
+
+\begin{quote}
+\enquote{I consider Go to be a light object oriented programming language. Yes it does have encapsulation and type member functions but it lacks inheritance and therefore traditional polymorphism.} \cite[]{WilliamKennedy.2013}
+\end{quote}
+
+Swift hingegen kann als vollwertige objektorientierte Programmiersprache angesehen werden.
+
+\begin{quote}
+\enquote{Swift’s features allow it to be used as an object-oriented programming language. This
+means that you do the majority of your work by creating and manipulating objects—
+chunks of data and code that represent a thing that can perform some useful work or
+store some useful data.} \cite[59]{Manning.2016}
+\end{quote}
+
+In den Codebeispielen konnten alle Anforderungen erfüllt werden.
+Es muss jedoch berücksichtigt werden, das es sich hierbei um einfache Anforderungen handelt, die nicht der Realität entsprechen. 
+Das Go keine Vererbung unterstützt ist im Vergleich zu Swift der größte Nachteil.
+Die Art in der Objektorientierung in Swift umgesetzt ist, ist für Umsteiger von anderen objektorientierten Programmiersprachen (Java, C\#) einfacher zu erlernen und zu verstehen.
+\cite[]{WilliamKennedy.2013} beschreibt die objektorientierten Fähigkeiten wie folgt.
+
+\begin{quote}
+\enquote{Go took the best parts of OOP, left out the rest and gave us a better way to write polymorphic code.} \cite[]{WilliamKennedy.2013}
+\end{quote}
