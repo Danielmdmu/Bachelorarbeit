@@ -1,7 +1,7 @@
 \chapter{Fehlerbehandlung}
-Von \cite[S.310]{Apple.2017} wird Fehlerbehandlung als Prozess bezeichnet, auf Fehler zu reagieren und Ablauf des Programms im Normalzustand zu gewährleisten.
-Laut \cite[S.77]{Manning.2016} ist es normal, das während der Ausführung von Computerprogrammen Fehler passieren. 
-Allerdings sollte man die Möglichkeit haben diese Fehler abzufangen. 
+Von \cite[S.310]{Apple.2017} wird Fehlerbehandlung als Prozess bezeichnet, auf Fehler zu reagieren und den Ablauf eines Programms im Normalzustand zu gewährleisten.
+Laut \cite[S.77]{Manning.2016} ist es normal, dass, während der Ausführung von Computerprogrammen, Fehler passieren. 
+Allerdings sollte der Entwickler die Möglichkeit haben, auf diese Fehler zu reagieren. 
 In diesem Kapitel werden die Möglichkeiten von Go und Swift zur Fehlerbehandlung untersucht.
 
 
@@ -34,7 +34,7 @@ unwinding the call stack, a process that can be computationally expensive. As su
 throw statement are comparable to those of a return statement.} \cite[S.311]{Apple.2017}
 \end{quote}
 
-Dadurch bietet Swift die Möglichkeit ausgiebigen Gebrauch der Mechanismen zur Fehlerbehandlung zu machen, ohne dabei mit Leistungseinbußen rechnen zu müssen.
+Dadurch bietet Swift die Möglichkeit, ausgiebigen Gebrauch der Mechanismen zur Fehlerbehandlung zu machen, ohne dabei mit Leistungseinbußen rechnen zu müssen.
 Das Schlüsselwort \textit{throw}, welches auch in Java verwendet wird, bietet die Möglichkeit einen Fehler zu ,,werfen''.
 das Werfen eines Fehlers zeigt an, das etwas unerwartetes eingetreten ist und der normale Ablauf des Programms nicht fortgesetzt werden kann \cite[S.311]{Apple.2017}.
 \autoref{lst:ThrowErrorSwift} zeigt das Werfen eines Fehlers mittels des Schlüsselwortes \textit{throw}.
@@ -153,7 +153,7 @@ if let result = try? Divide(x: 6, y: 2) {
 \end{SwiftCode}
 \end{listing}
 
-Der Konstante \textit{result} soll das Ergebnis des Funktionsaufrufs von \textit{Divide} zugewiesen werden und der Wert von \textit{result} soll anschließend ausgegben werden. 
+Der Konstanten \textit{result} soll das Ergebnis des Funktionsaufrufs von \textit{Divide} zugewiesen und der Wert von \textit{result} ausgegeben werden. 
 Zeile 2 - 5 zeigt die klassische Vorgehensweise ähnlich zu Java und C\# während in Zeile 8 - 10 das \textit{try?}-Schlüsselwort verwendet wird.
 Nach Ansicht von \cite[S181]{Hoffman.2017} macht die Verwendung von \textit{try?} den Quelltext übersichtlicher und einfacher lesbar.
 
@@ -277,7 +277,7 @@ var (
 \end{GoCode}
 \end{listing}
 
-Da die in \autoref{lst:ErrorBeispielGo4} definierten Fehler können genutzt werden um spezifische Fehler zu identifizieren. 
+Die in \autoref{lst:ErrorBeispielGo4} definierten Fehler können genutzt werden um spezifische Fehler zu identifizieren. 
 \autoref{lst:ErrorBeispielGo5} zeigt wie die in \autoref{lst:ErrorBeispielGo4} definierten Fehler unterschieden werden können und unterschiedliche auf die Fehler reagiert werden kann.
 
 \begin{listing}[H]
@@ -305,6 +305,5 @@ if err != nil {
 
 \todo{Recover}
 
-Die Möglichkeiten von Swift in der Fehlerbehandlung übertreffen die von Go.
 Das Konzept zur Fehlerbehandlung von Swift ist dem anderer Programmiersprachen wie Java und C\# ähnlich und erweitert dies noch mit weiteren eleganten Möglichkeiten.
 Das Konzept von Go hingegen ist anders und erfordert für Entwickler, die beispielsweise mit Java vertraut sind, ein gewisses Umdenken. 

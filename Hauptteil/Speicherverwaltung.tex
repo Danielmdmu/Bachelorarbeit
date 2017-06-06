@@ -20,7 +20,7 @@ Auf dem offiziellen Go Blog wir die Funktionsweise folgendermaßen beschrieben
 \enquote{In a tri-color collector, every object is either white, grey, or black and we view the heap as a graph of connected objects. At the start of a GC cycle all objects are white. The GC visits all roots, which are objects directly accessible by the application such as globals and things on the stack, and colors these grey. The GC then chooses a grey object, blackens it, and then scans it for pointers to other objects. When this scan finds a pointer to a white object, it turns that object grey. This process repeats until there are no more grey objects. At this point, white objects are known to be unreachable and can be reused.} \cite{Go.GC}
 \end{quote}
 
-Swift verwendet keinen \textit{Garbage Collector} zur Speicherverwaltung, sondern \textit{Automatic Reference Counting}(ARC).
+Swift verwendet als \textit{Garbage Collector} \textit{Automatic Reference Counting}(ARC).
 \textit{Automatic Reference Counting} merkt sich die Referenzen auf Instanzen von Klassen.
 Zeigt keine Referenz auf die Instanz einer Klasse, wird diese Instanz von \textit{Automatic Reference Counting} zerstört und der Speicher frei gegeben \cite[S.137]{Hoffman.2017}. 
 Dieses Verhalten von \textit{Automatic Reference Counting} funktioniert in den meisten Fällen.

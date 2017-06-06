@@ -1,10 +1,10 @@
 \chapter{Typsystem}
 \label{ch:Typsystem}
-Der Datentyp einer Variable oder Konstante beschreibt den Inhalt der Daten und teilt dem Compiler mit, wie diese Daten behandelt werden können. 
-Anhand des Datentyps weiß der Compiler wieviel Arbeitsspeicher er reservieren muss und kann sicherstellen das einer Variable keine falschen Daten zugewiesen werden \cite[S.62]{Mathias.2016}.
+Der Datentyp einer Variablen oder Konstanten beschreibt den Inhalt der Daten und teilt dem Compiler mit, wie diese Daten behandelt werden können. 
+Anhand des Datentyps weiß der Compiler wieviel Arbeitsspeicher er reservieren muss und kann sicherstellen, dass einer Variablen keine falschen Daten zugewiesen werden \cite[S.62]{Mathias.2016}.
 
 \section{Basidatentypen}
-Sowohl Go als auch Swift bringen die grundlegenden Datentypen mit, die auch von anderen Hochsprachen gewohnt sind.
+Sowohl Go als auch Swift bringen die grundlegenden Datentypen mit, die auch von anderen Hochsprachen bekannt sind.
 In \autoref{tab:DatentypenGo} sind die in Go verfügbaren Datentypen aufgelistet.
 
 \begin{table}[H]
@@ -55,13 +55,13 @@ In \autoref{tab:DatentypenGo} sind die in Go verfügbaren Datentypen aufgelistet
 \end{table}
 
 Die Ganzzahl-Datentypen können jeweils als 8-, 16-, 32- oder 64-Bit-Variante verwendet werden. 
-Wird kein spezieller ganzzahliger Datentyp definiert, sondern nur ein \emph{int} oder \emph{uint} so kommt es darauf an, ob das Programm auf einem 32-Bit oder 64-Bit System kompiliert wird.
-Wird auf einem 32-Bit-System eine Variable als \emph{int} deklariert ist diese jedoch nicht automatisch auch vom Typ \emph{int32}.
+Wird kein spezieller, ganzzahliger Datentyp definiert, sondern ein \emph{int} oder \emph{uint} so kommt es darauf an, ob das Programm auf einem 32-Bit oder 64-Bit System kompiliert wird.
+Wird auf einem 32-Bit-System eine Variable als \emph{int} deklariert, ist diese  nicht automatisch auch vom Typ \emph{int32}.
 Im \autoref{lst:VariablenGo} ist dies beispielhaft dargestellt. 
 Beim kompilieren von \autoref{lst:VariablenGo} gibt der Compiler die in Zeile 9 dargestellte Fehlermeldung aus. 
 Die beiden Typen \emph{byte} und \emph{rune} sind Alias-Datentypen.
 Der Typ \emph{rune} wird üblicherweise für Unicode-Zeichen benutzt, um sich semantisch von dem numerischen Datentyp \emph{int32} zu unterscheiden. 
-Gleichermaßen verhält es sich mit dem Typ \emph{byte}, der dafür benutzt werden sollte Rohdaten abzulegen anstatt eines numerischen Wertes \cite[S.98]{Kennedy.2016}.
+Gleichermaßen verhält es sich mit dem Typ \emph{byte}, der dafür benutzt werden sollte unverarbeitete Daten abzulegen, anstatt eines numerischen Wertes \cite[S.98]{Kennedy.2016}.
 
 \begin{listing}[H]
 \caption{Implizite und explizte Angabe des Datentypen in Go}
@@ -79,7 +79,7 @@ func main() {
 \end{GoCode}
 \end{listing}
 
-In \autoref{tab:DatentypenSwift} ist eine Übersicht über von Swift zur Verfügung gestellten Basisdatentypen. 
+In \autoref{tab:DatentypenSwift} ist eine Übersicht über, die von Swift zur Verfügung gestellten, Basisdatentypen. 
 
 \begin{table}[h]
 \centering
@@ -114,11 +114,11 @@ In \autoref{tab:DatentypenSwift} ist eine Übersicht über von Swift zur Verfüg
 \label{tab:DatentypenSwift}
 \end{table}
 
-Ebenso wie Go bietet Swift dem Programmierer an eine ganzzahlige Variable mit einer bestimmten Größe von 8-, 16-, 32- oder 64-Bit zu definieren.
+Ebenso wie Go, bietet Swift dem Programmierer an, eine ganzzahlige Variable mit einer bestimmten Größe von 8-, 16-, 32- oder 64-Bit zu definieren.
 Das \autoref{lst:SwiftTypdelaration} ist analog zu \autoref{lst:VariablenGo} implementiert.
 Auch Swift sieht in einer \emph{Int}-Variable auf einem 32-Bit-System und einer explizit als \emph{Int32} definierten Variablen einen Unterschied.
-Der Swit-Compiler ist in dieser Hinsicht jedoch nicht so restriktiv wie der Go-Compiler.
-Er gibt eine Warnung aus, mit dem Hinweis auf eine explizite Typumwandlung.
+Der Swift-Compiler ist in dieser Hinsicht jedoch nicht so restriktiv wie der Go-Compiler.
+Er gibt eine Warnung mit dem Hinweis auf eine explizite Typumwandlung aus.
 Das Ergebnis wird aber wie gewünscht berechnet und ausgegeben. 
 
 \begin{listing}[H]
@@ -135,7 +135,7 @@ print(x+y) //Ausgabe: 12
 \end{SwiftCode}
 \end{listing}
 
-Von \cite[S.30]{Hoffman.2017} wird empfohlen, soweit es keinen speziellen Grund gibt einen ganzahligen Typ mit einer expliziten Größe zu definieren, die impliziten Typen \emph{Int} und \emph{UInt} zu benutzen.
+Von \cite[S.30]{Hoffman.2017} wird empfohlen, soweit es keinen speziellen Grund gibt, einen ganzzahligen Typ mit einer expliziten Größe zu definieren, die impliziten Typen \emph{Int} und \emph{UInt} zu benutzen.
 Diese Empfehlung kann grundsätzlich sowohl für Swift als auch Go ausgesprochen werden.
 Jedoch muss der unterschiedliche Wertebereich bei 32-Bit und 64-Bit Systemen beachtet werden. 
 
@@ -143,8 +143,8 @@ Jedoch muss der unterschiedliche Wertebereich bei 32-Bit und 64-Bit Systemen bea
 \label{sec:TypeInference}
 % Beide Sprachen beherrschen Type Inference. 
 % Durch Type Inference ist es nicht nötig den Datentyp einer Variable anzugeben, sondern der Compiler erkennt diesen anhand des zugewiesenen Wertes. \cite[S.307]{Hinzberg.2015}
-In den vorherigen Codebeispielen (\ref{lst:VariablenGo} und \ref{lst:SwiftTypdelaration}) wurden die Variablen explizit mit einem Datentyp definiert. Jedoch beherrschen sowohl Go als auch Swift einen Mechanismus der \emph{Type Inference} genannt wird. 
-\emph{Type Inference} ermöglicht es, den Datentyp der Variable bei der Definition weg zu lassen. 
+In den vorherigen Codebeispielen (\ref{lst:VariablenGo} und \ref{lst:SwiftTypdelaration}) werden die Variablen explizit mit einem Datentyp definiert. Jedoch beherrschen sowohl Go als auch Swift einen Mechanismus, der \emph{Type Inference} genannt wird. 
+\emph{Type Inference} ermöglicht es, den Datentypen der Variablen bei der Definition weg zu lassen. 
 Stattdessen ermittelt der Compiler anhand des Initialwerts, um welchen Datentyp es sich handelt \cite[S.28]{Hoffman.2017}.
 In \autoref{lst:TypeInferenceSwift} ist zu sehen, wie dies in Swift aussieht.
 
@@ -164,7 +164,7 @@ Bei der Definition der Variablen \emph{a} in Zeile 1 ist kein Datentyp angegeben
 Die anschließende Überprüfung mit der \emph{type(of:)}-Funktion ergibt, dass beide Variablen vom Typ \emph{Int} sind.
 
 Das \autoref{lst:TypeInferenceGo} zeigt ein Beispiel für \emph{Type Inference} in Go. 
-In Zeile 9 wird eine Variabe \emph{a} ohne Angabe eines Datentyps deklariert und mit dem Wert 1 initialisiert.
+In Zeile 9 wird eine Variable \emph{a} ohne Angabe eines Datentyps deklariert und mit dem Wert 1 initialisiert.
 Die Variable \emph{b} in Zeile 10 wird explizit mit dem Datentyp \emph{int} deklariert.
 Zur Überprüfung soll der Datentyp der Variablen ausgegeben werden. 
 Hierzu muss in Go das Package \emph{reflect} importiert werden. \todo{Evtl. nähere Infos zu Reflection}
@@ -194,7 +194,7 @@ func main() {
 \end{listing}
 
 \emph{Type Inference} kann dem Programmierer oftmals die Angabe des Datentyps ersparen. 
-Immer dann wenn eine Variable oder Konstante mit einem \Gls{Literal} initialisiert wird, kann der Compiler den verwendeten Datentyp eigenständig feststellen. 
+Immer dann, wenn eine Variable oder Konstante mit einem \Gls{Literal} initialisiert wird, kann der Compiler den verwendeten Datentyp eigenständig feststellen. 
 Jedoch verwendet der Compiler immer den Datentyp mit dem größten Wertebereich.
 In \autoref{lst:TypeInferenceSwift2} wird die Variabe \emph{a} mit dem Wert 1.1 intialisiert.
 Der Compiler verwendet für die Variable den Datentyp \emph{Double}.
@@ -212,9 +212,9 @@ print(type(of: b)) //Ausgabe: Float
 \end{SwiftCode}
 \end{listing}
 
-Der Programmierer muss bei der Entwicklung abwägen, ob er einer Variablen explizit einen Datentyp zuweist oder ob er dies dem Compiler überlässt. 
+Der Programmierer muss bei der Entwicklung abwägen, ob er einer Variablen explizit einen Datentyp zuweist, oder ob er dies dem Compiler überlässt. 
 Dabei muss auf den Wertebereich einer Variablen und dem damit verbundenen Verbrauch an Arbeitsspeicher geachtet werden. 
-Es sollte entschieden werden ob entweder konsequent \emph{Type Inference} verwendet wird, oder ob Variablen explizit mit einem Datentyp deklariert werden. 
+Es sollte entschieden werden, ob entweder konsequent \emph{Type Inference} verwendet wird, oder ob Variablen explizit mit einem Datentyp deklariert werden. 
 Bei größeren Projekten sollte eine solche Entscheidung in den \emph{Coding Guidelines} festgehalten werden.
 
 \section{Zeichenketten}
@@ -276,8 +276,5 @@ var s string = `C:\Windows\System32\`
 \end{GoCode}
 \end{listing}
 
-\section{Arrays}
-
-\section{Erweiterte Datenstrukturen}
 
 

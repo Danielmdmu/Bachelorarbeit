@@ -7,7 +7,7 @@ Mittlerweile ist Objektorientierung so populär geworden, dass sich viele Softwa
 \cite[S.16]{PoetzschHeffter.2009}
 \end{quote}
 
-Doch welche Merkmal müssen auf eine Programmiersprache zutreffen, um sie als objektorientierte Programmiersprache betiteln zu können?
+Doch welche Merkmale müssen auf eine Programmiersprache zutreffen, um sie objektorientierte Programmiersprache nennen zu können?
 Laut \cite{Lahres.2011} gelten folgende Grundelemente als Basis einer objektorientierten Programmiersprache:
 
 \begin{itemize}
@@ -20,15 +20,15 @@ Erfüllen Go und Swift die Grundvoraussetzungen einer objektorientierten Program
 
 \section{Vererbung}
 Ein zentrales Element der Objektorientierten Programmierung ist die Vererbung. 
-Laut \cite[S. 145]{PoetzschHeffter.2009} bedeutet Vererbung im engeren Sinne, dass eine Klasse Programmteile von einer anderne Klasse automatisch übernimmt. 
-Bei der einfachen Form der Vererbung, auch Einfachvererbung genannt, erbt eine Klasse von einer anderen Klasse.
-Eine andere Form der Vererbung ist die sogenannte Merfachvererbung. 
+Laut \cite[S. 145]{PoetzschHeffter.2009} bedeutet Vererbung im engeren Sinne, dass eine Klasse Programmteile von einer anderen Klasse automatisch übernimmt. 
+Bei der einfachen Form der Vererbung, auch Einfachvererbung genannt, erbt die Klasse von genau einer anderen Klasse.
+Eine andere Form der Vererbung ist die sogenannte Mehrfachvererbung. 
 Bei der Mehrfachvererbung kann eine Klasse von mehreren Klassen erben.
-Von \cite[S.41]{Oestereich.1999} wird darauf hingewiesen, dass zu Vererbung auch verschieden Alternativen existieren und die Möglichkeiten und die Sinnhaftigkeit von Vererbung häufig überschätzt werden.
+Von \cite[S.41]{Oestereich.1999} wird darauf hingewiesen, dass zur Vererbung  verschiedene Alternativen existieren und die Möglichkeiten und die Sinnhaftigkeit von Vererbung häufig überschätzt werden.
 
 
-Dieser Abschnitt beschäftigt sich mit der Frage ob Go und Swift Vererbung unterstützen beziehungsweise ob eine Aufgabe alternativ implementiert werden kann.
-Zu diesem Zweck soll eine gegebene Vererbungshierarchie in Form eines UML-Klassendiagramms beispielhaft in Go und Swift implementiert werden. 
+Dieser Abschnitt beschäftigt sich mit der Frage ob Go und Swift Vererbung unterstützen, beziehungsweise, ob eine Aufgabe alternativ implementiert werden kann.
+Zu diesem Zweck wird eine gegebene Vererbungshierarchie in Form eines UML-Klassendiagramms beispielhaft in Go und Swift implementiert. 
 Das folgende Beispiel orientiert sich an \cite[]{WilliamKennedy.2013}.
 
 \begin{figure}[H]
@@ -39,7 +39,7 @@ Das folgende Beispiel orientiert sich an \cite[]{WilliamKennedy.2013}.
 \end{figure}
 
 \autoref{fig:Klassendiagramm} zeigt ein UML-Klassendiagramm mit einer einfachen Vererbungs-Hierarchie.
-Die beiden Klassen \emph{Cat} und \emph{Dog} erben die Eigenschaften von der Klasse \emph{Animal}.
+Die beiden Klassen \emph{Cat} und \emph{Dog} erben die Eigenschaften der Klasse \emph{Animal}.
 
 
 Da Go keine Vererbung beherrscht, ist Komposition\todo{Glossar} die einzige Möglichkeit eine Hierarchie abzubilden \cite[]{Kennedy.2016}.
@@ -70,12 +70,16 @@ In Zeile 1-4 wird eine neue struct \emph{Animal} definiert.
 Die struct \emph{Animal} wird anschließend in die structs \emph{Cat} und \emph{Dog} eingebunden. 
 Hierdurch bekommen \emph{Cat} und \emph{Dog} die Eigenschaften von \emph{Animal}.
 Bei der struct \emph{Cat} wurde die struct \emph{Animal} mit dem Zusatz \emph{Basics} eingebunden. 
-Dies bedeutet das beim Zugriff auf die geerbeten Eigenschaften aus \emph{Animal} auch immer zusätzlich \emph{Basics} angegeben werden muss. 
+Dies bedeutet das beim Zugriff auf die geerbten Eigenschaften aus \emph{Animal} zusätzlich \emph{Basics} angegeben werden muss. 
 Die struct \emph{Dog} bindet \emph{Animal} dagegeben anonym ein. 
-Die anonyme Variante hat den Vorteil, dass beim Zugriff auf Eigenschaften nicht zwischen geerbeten und eigenen Eigenschaften unterschieden werden muss.
+Die anonyme Variante hat den Vorteil, dass beim Zugriff auf Eigenschaften nicht zwischen geerbten und eigenen Eigenschaften unterschieden werden muss.
 Ist dieses Verhalten explizit gewünscht, sollte der Programmierer der eingebetteten struct einen Namen geben.
 Da es sich bei diesem Vorgehen um eine Konvention handelt, sollte dieser Name immer gleich lauten und für größere Projekte separat festgehalten werden. 
-\todo{Verweis zu Methoden}
+
+Von Pike, einem der Entwickler von Go, wird der Verzicht auf Vererbung mit folgender Aussage begründet:
+\begin{quote}
+\enquote{Go takes an unusual approach to object-oriented programming, allowing methods on any type, not just classes, but without any form of type-based inheritance like subclassing. This means there is no type hierarchy. This was an intentional design choice. Although type hierarchies have been used to build much successful software, it is our opinion that the model has been overused and that it is worth taking a step back.}\cite[]{RobPike.2012}
+\end{quote}
 
 Swift kennt sowohl Strukturen als auch Klassen. Von Apple werden Klassen und Strukturen wie folgt beschrieben. 
 \begin{quote}
@@ -547,3 +551,47 @@ Die Art in der Objektorientierung in Swift umgesetzt ist, ist für Umsteiger von
 \begin{quote}
 \enquote{Go took the best parts of OOP, left out the rest and gave us a better way to write polymorphic code.} \cite[]{WilliamKennedy.2013}
 \end{quote}
+
+\section{Erweiterungen}
+Mit \textit{Xtend}\cite[]{Xtend} ist eine Programmiersprache für die \textit{Java Virtual Machine} verfügbar, welche es erlaubt über \textit{Extension Methods} neue Methoden zu bestehenden Klassen hinzuzufügen, ohne diese zu verändern.
+
+Swift kennt diese Funktionalität unter dem Namen \textit{Extensions}.
+Ein Auszug aus der Swift Dokumentation \cite[S331]{Apple.2017} bietet einen Überblick über die Möglichkeiten, die Extensions in Swift bieten:
+
+\begin{itemize}
+    \item Add computed instance properties and computed type properties    
+    \item Define instance methods and type methods
+    \item Provide new initializers
+    \item Define subscripts
+    \item Define and use new nested types
+    \item Make an existing type conform to a protocol
+\end{itemize}
+
+\autoref{lst:SwiftExtensions} zeigt die Anwendung von \textit{Extensions} in Swift.
+Der Swift-Basisdatentyp \textit{Double} wird über die \textit{Extension} mit \textit{Properties} für Längenangaben erweitert.
+Eine \textit{Extension} kann bestehende Funktionalitäten eines Objektes nicht überschreiben.
+Auch \textit{Protocols} können mit \textit{Extensions} erweitert werden.
+
+\begin{listing}
+\caption{\textit{Extensions} in Swift Quelle: \cite[S.332f]{Apple.2017}}
+\label{lst:SwiftExtensions}
+\begin{SwiftCode}
+extension Double {
+    var km: Double { return self * 1_000.0 }
+    var m: Double { return self }
+    var cm: Double { return self / 100.0 }
+    var mm: Double { return self / 1_000.0 }
+    var ft: Double { return self / 3.28084 }
+}
+
+let oneInch = 25.4.mm
+print("One inch is \(oneInch) meters") 
+// Prints "One inch is 0.0254 meters"
+
+let threeFeet = 3.ft
+print("Three feet is \(threeFeet) meters")
+// Prints "Three feet is 0.914399970739201 meters"
+\end{SwiftCode}
+\end{listing}
+
+Go bietet dem Programmierer keine Möglichkeit bestehende Typen durch integrierte Sprachkonstrukte zu erweitern. 

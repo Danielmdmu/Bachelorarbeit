@@ -1,12 +1,12 @@
 \chapter{Tools}
 Dieses Kapitel beschäftigt sich damit, wie eine Entwicklungsumgebung in Go und Swift aussehen könnte. 
-Welche Betriebssysteme werden unterstützt?
-Gibt es integrierte Entwicklungsumgebungen?
-Welchen Umfang hat die Standardbibliothek?
+% Welche Betriebssysteme werden unterstützt?
+% Gibt es \gls{IDE} %integrierte Entwicklungsumgebungen?
+% Welchen Umfang hat die Standardbibliothek?
 
 
 \section{Entwicklungsumgebung}
-Auf Github \cite[]{Github.Swift} werden für Swift die in \autoref{tab:UnterstützteBetriebssysteme} aufgeführten \textit{host developtment operationg systems} genannt.
+Auf Github \cite[]{Github.Swift} werden für Swift die in \autoref{tab:UnterstützteBetriebssysteme} aufgeführten \textit{host development operationg systems} genannt.
 In Go kann auf den in \autoref{tab:UnterstützteBetriebssysteme} gezeigten Plattformen entwickelt werden.
 
 \begin{table}[H]
@@ -17,7 +17,7 @@ In Go kann auf den in \autoref{tab:UnterstützteBetriebssysteme} gezeigten Platt
     \hline
     \cellcolor{Gray} \textbf{Go} Version 1.8.1 & Ab Windows XP & Ab Linux 2.6.23 & Ab MacOS X 10.8 \\
     \hline
-    \cellcolor{Gray} \textbf{Swift} Version 3.1.1 &  & Ubuntu LTS und die letze Ubuntu Version (Aktuell 16.10) & Xcode 8.3.2 \\
+    \cellcolor{Gray} \textbf{Swift} Version 3.1.1 &  & Ubuntu LTS und die letzte Ubuntu Version (Aktuell 16.10) & Xcode 8.3.2 \\
     \hline
     \end{tabularx}
     \caption{Unterstützte Betriebssysteme}
@@ -64,7 +64,8 @@ Der grundsätzliche Aufbau einer Arbeitsumgebung in Go ist in \autoref{fig:GoWor
     \label{fig:GoWorkspace}
 \end{figure}
 
-Wird Quelltext kompiliert, werden die vom Compiler erzeugten Binärdateien in den Ordner \textit{bin} und \textit{pkg} abgelegt.
+Wird Quelltext kompiliert, werden die vom Compiler erzeugten Binärdateien in den Ordner \textit{bin}, für ausführbare Progamme, und \textit{pkg}, für eigene Bibliotheken, abgelegt.
+
 Im Ordner \textit{src} befindet sich der Quelltext, üblicherweise in Form von Repositorys eines Versionskontrollsystems.
 
 Swift unterscheidet sich hier von Go. 
@@ -121,7 +122,7 @@ Derzeit gibt es mit \textit{LiteIDE} (https://github.com/visualfc/liteide) nur e
 Die Firma Jetbrains hat angekündigt mit \textit{Gogland}\cite[]{Gogland} eine integrierte Entwicklungsumgebung für Swift auf den Markt zu bringen, siehe \cite[]{Gogland.Heise}.
 \textit{Gogland} befindet sich aktuell noch im \textit{Early Access Program}, einer Vorabversion.
 
-Swift ist zwar für Linux und MacOS verfügbar, jedoch gibt es mit XCode nur eine itegrierte Entwicklungsumgebung für MacOS.
+Swift ist zwar für Linux und MacOS verfügbar, jedoch gibt es mit XCode nur eine integrierte Entwicklungsumgebung für MacOS.
 
 \section{Standardbibliothek}
 Apple beschreibt die Standardbibliothek von Swift mit folgendem Satz.

@@ -1,9 +1,185 @@
 \chapter{Einleitung}
 
 \section{Vorstellung des Kontexts der Arbeit}
+Neben den etablierten Programmiersprachen, wie Java und C/C++, werden kontinuierlich neue Programmiersprachen entworfen.
+Viele neue Sprachen werden als Open-Source entwickelt und auf Github gehostet.
 
-\section{Zielsetzung/Motivation}
+Folgende Auflistung zeigt die auf Github beliebtesten Programmiersprachen-Projekte (Stand: Mai 2017) \cite{Github}.
+
+% \begin{table}[H]
+%     \centering
+%     \begin{tabularx}{\textwidth}{|l|X|}
+%     \hline 
+%     \rowcolor[gray]{0.75} \textbf{Platz} & \textbf{Programmiersprache} \\
+%     \hline
+% 	1 & Swift \\
+% 	\hline
+% 	2 & Go \\
+% 	\hline
+% 	3 & TypeScript \\
+% 	\hline  
+% 	4 & Rust \\
+% 	\hline
+% 	5 & Kotlin \\
+%     \hline
+%     \end{tabularx}
+%     \caption{Rangfolge der Programmiersprachen Projekte auf Github, in Anlehung an \cite{Github}}
+%     \label{tab:Github}
+% \end{table}
+
+\begin{itemize}
+    \item Swift
+    \item Go
+    \item TypeScript
+    \item Rust
+    \item Kotlin
+\end{itemize}
+
+Mit Go und Swift befinden sich zwei Projekte darunter, die aufgrund ihrer Herkunft besondere Aufmerksamkeit erregen.
+Go wird seit 2009 von Google entwickelt und Swift wurde 2014 von Apple vorgestellt.
+Doch warum sind Google und Apple daran interessiert neue Programmiersprachen zu entwickeln?
+Die \gls{FAQ} von Go liefert auf die Frage ,,Why are you creating a new language?'' folgende Antwort: 
+
+\begin{quote}
+\enquote{Go was born out of frustration with existing languages and environments for systems programming.}\cite{Golang.FAQ}
+\end{quote}
+
+Rob Pike, einer der Entwickler von Go, leitet einen seiner Artikel zum Einsatz von Go bei Google, mit folgender Aussage ein:
+
+\begin{quote}
+\enquote{Go was designed to address the problems faced in software development at Google, which led to a language that is not a breakthrough research language but is nonetheless an excellent tool for engineering large software projects.}\cite{RobPike.2012}
+\end{quote}
+
+Google entwickelt Go also vor allem aus eigenem Bedarf heraus und um bestehende Probleme bei Google zu lösen.
+Auf die Frage, warum Swift entwickelt wurde, gibt die offizielle Webseite von Swift folgende Antwort:
+
+\begin{quote}
+\enquote{The goal of the Swift project is to create the best available language for uses ranging from systems programming, to mobile and desktop apps, scaling up to cloud services.}\cite{Swift.Homepage}
+\end{quote}
+
+Swift verfolgt mit dem Ziel, eine der besten verfügbaren Programmiersprachen zu entwickeln, ein sehr ambitioniertes Ziel.
+
+\section{Motivation}
+Google und Apple verfolgen demnach beide das Ziel die heutigen Anforderungen an moderne Softwareentwicklung mit einer neuen Programmiersprache zu erfüllen.  
+Im April 2016 war im Onlinemagazin heise.de folgende Schlagzeile zu lesen:
+
+\begin{quote}
+\enquote{Google erwägt Swift angeblich als Programmiersprache für Android}\cite{Becker}
+\end{quote}
+
+% Doch warum erwägt Google Swift als Programmiersprache für Android, wenn von Google mit Go eine eigene moderne Programmiersprache entwickelt wird?
+Obwohl Google mit Go selbst eine moderne Programmiersprache entwickelt, ist Google an einem Einsatz von Swift interessiert.
+Anfang 2017 war zudem auf heise.de diese Schlagzeile zu lesen:
+
+\begin{quote}
+\enquote{Programmiersprachen-Ranking: TIOBE sieht Go als Sprache des Jahres 2016}\cite{MengeSonnentag}
+\end{quote}
+
+\autoref{tab:Tiobe} zeigt die Top 20 des TIOBE-Index zum Stand Mai 2017. 
+Go befindet sich auf Platz 16 und Swift belegt Platz 13. 
+In der zweiten Spalte ist die Platzierung des Vorjahres zu sehen. 
+Go hat sich dabei von Platz 42 auf Platz 16 verbessert.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|c|c|X|}
+    \hline 
+    \rowcolor[gray]{0.75} \textbf{Mai 2017} & \textbf{Mai 2016} & \textbf{Programmiersprache} \\
+    \hline
+    1 & 1 & Java \\
+    \hline
+    2 & 2 & C \\
+    \hline
+    3 & 3 & C++ \\
+    \hline
+    4 & 5 & Python \\
+    \hline
+    5 & 4 & C\# \\
+    \hline
+    6 & 10 & Visual Basic.NET \\
+    \hline
+    7 & 7 & JavaScript \\
+    \hline
+    8 & 12 & Assembler \\
+    \hline
+    9 & 6 & PHP \\
+    \hline
+    10 & 9 & Perl \\
+    \hline
+    11 & 8 & Ruby \\
+    \hline
+    12 & 13 & Visual Basic \\
+    \hline
+    \rowcolor[gray]{0.9} 13 & 15 & Swift \\
+    \hline
+    14 & 16 & R \\
+    \hline
+    15 & 14 & Objective-C \\
+    \hline
+    \rowcolor[gray]{0.9} 16 & 42 & Go \\
+    \hline
+    17 & 18 & MATLAB \\	
+    \hline
+    18 & 11 & Delphi/Object Pascal \\	
+    \hline
+    19 & 19 & PL/SQL \\	
+    \hline
+    20 & 22 & Scratch \\	
+    \hline
+    \end{tabularx}
+    \caption{TIOBE-Index Stand Mai 2017, in Anlehung an \cite{Tiobe}}
+    \label{tab:Tiobe}
+\end{table}
 
 \section{Aufgabenstellung}
+Go und Swift haben somit Interesse bei Softwareentwicklern geweckt.
+In \autoref{tab:Vergleich} ist eine Gegenüberstellung von Go und Swift zu sehen.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|X|X|}
+    \hline 
+    \rowcolor[gray]{0.75} \textbf{Go} & \textbf{Swift} \\
+    \hline
+	Google & Apple \\
+	\hline
+	Open Source & Open Source \\
+	\hline
+	Kompiliert & Kompiliert \\
+	\hline  
+	Statisches Typsystem & Statisches Typsystem \\
+	\hline
+	Garbage Collected & Garbage Collected \\
+    \hline
+    \end{tabularx}
+    \caption{Gegenüberstellung Go und Swift}
+    \label{tab:Vergleich}
+\end{table}
+
+% Der einzige Unterschied der beiden Sprachen, bei diesem Kriterien, ist, dass Go von Google und Swift von Apple entwickelt wurde. 
+Ein oberflächlicher Vergleich von Go und Swift wird zu dem Ergebnis kommen, dass die beiden Sprachen gleich sind.
+%Doch worin liegen die Unterschiede der beiden Programmiersprachen?
+Die Unterschiede von Go und Swift müssen also im Detail liegen.
+%Welche Möglichkeiten gibt es, Programmiersprachen zu vergleichen?
+Ein näherer Vergleich der beiden Programmiersprachen sollte mögliche Gemeinsamkeiten und Unterschiede aufzeigen können.
+
+Von \cite{Comparsion} wurde ein Vergleich von Programmiersprachen durchgeführt.
+Einige der Vergleichskriterien dieser Arbeit sind:
+
+\begin{itemize}
+    \item Speicherverbrauch
+    \item Kompilierzeit
+    \item Laufzeit
+    \item Größe des erzeugten Binärcodes
+\end{itemize}
+
+% Diese aufgeführten Vergleichskriterien sind zwar messbar, allerdings spiegeln sie nicht die Anforderungen an moderne Programmiersprachen wieder. 
+Die aufgeführten Kriterien sind zwar messbar, allerdings sind diese Kriterien sehr abhängig von der zu Grunde liegenden Hardware.
+
+Aus diesem Grund wurden für diese Arbeit eigene Vergleichskriterien aufgestellt, um Go und Swift miteinander zu vergleichen.
+Die beiden Sprachen sollen mit diesen Kriterien miteinander verglichen werden.
 
 \section{Aufbau der Arbeit}
+Jedes Kapitel dieser Arbeit entspricht einem Vergleichskriterium.
+Die zugehörigen Abschnitte konkretisieren das Vergleichskriterium.
+Als nötiges Vorwissen wird vom Leser erwartet, dass er Kenntnisse in einer höheren Programmiersprache, wie Java, C\# oder C/C++, besitzt. 

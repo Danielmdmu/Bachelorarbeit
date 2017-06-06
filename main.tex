@@ -22,7 +22,7 @@
 \usepackage{fancyhdr}%% Kopfzeile u. Fußzeile
 \usepackage{fontspec}%% Schriftart
 \usepackage[onehalfspacing]{setspace}%-- Zeilenabstand 1,5
-\usepackage[toc, nopostdot, acronyms]{glossaries}%% Glossar
+\usepackage[toc, nopostdot, acronyms, nonumberlist]{glossaries}%% Glossar
 \usepackage[intoc]{nomencl}%% Symbolverzeichnis
 \usepackage{etoolbox}%Sorgt dafür, das Symbolverzeichnis im Header steht
 \usepackage[]{minted}
@@ -126,7 +126,7 @@ BoldItalicFont=timesbi.ttf
 }
 
 \definecolor{Gray}{gray}{0.75}
-
+\definecolor{lightblue}{rgb}{0.93,0.95,1.0}
 
 
 
@@ -137,6 +137,14 @@ BoldItalicFont=timesbi.ttf
 %== Titelseite =============================================
 %===========================================================
 \input{Titelseite.tex}
+
+\begin{abstract}
+    \textbf{Abstract in Deutsch}
+\end{abstract}
+
+\begin{abstract}
+    \textbf{Abstract in Englisch}
+\end{abstract}
     
 %===========================================================
 %== Inhaltsverzeichnis =====================================
@@ -201,6 +209,7 @@ BoldItalicFont=timesbi.ttf
 %== Abkürzungsverzeichnis ==================================
 %===========================================================
 %\newpage
+%\glsaddall
 \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
 
 
@@ -209,7 +218,7 @@ BoldItalicFont=timesbi.ttf
 % Text Einleitung, Hauptteil usw. 
 %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-% \input{Einleitung.tex}
+\input{Einleitung.tex}
 
 \input{Hauptteil/Syntax.tex}
 
@@ -229,9 +238,9 @@ BoldItalicFont=timesbi.ttf
 
 \input{Hauptteil/GenerischeProgrammierung.tex}
 
-% \input{Hauptteil/Anwendungsbeispiel.tex}
+\input{Hauptteil/Anwendungsbeispiel.tex}
 
-% \input{Schluss.tex}
+\input{Schluss.tex}
 
 %\input{Hauptteil/Beispiel.tex}
 
@@ -240,7 +249,7 @@ BoldItalicFont=timesbi.ttf
 %== Glossar ================================================
 %===========================================================
 %% Glossar
-\renewcommand*{\glossaryentrynumbers}[1]{} %Entfernt die Seitenzahl am Ende der Glossar-Beschreibung
+ \renewcommand*{\glossaryentrynumbers}[1]{} %Entfernt die Seitenzahl am Ende der Glossar-Beschreibung
 
 \printglossary[title=Glossar,toctitle=Glossar]
 
