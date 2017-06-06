@@ -9,8 +9,8 @@ Bei der Entwicklung für 32- und 64-Bit Systeme muss allerdings auf die richtige
 Dies betrifft vor allem die Verwendung von \textit{Type Inference}.
 
 Grundsätzlich ist objektorientierte Programmierung in Go und Swift möglich.
-Umsteiger aus Java wird allerdings der Umstieg auf Swift leichter fallen als in Go.
-Da Go auf Vererbung verzichtet, in Swift ist Vererbung integriert.
+Umsteigern aus Java wird allerdings der Umstieg auf Swift leichter fallen als in Go, da Go auf Vererbung verzichtet.
+In Swift ist Vererbung integriert.
 Swift bietet im Gegensatz zu Go integrierte Getter/Setter-Methoden.
 Die Möglichkeiten zur Zugriffssteuerung sind in Swift besser als in Go.
 Mit der Fähigkeit durch \textit{Extensions} eine Klasse/Objekt durch neue Eigenschaften beziehungsweise Verhalten zu erweitern, hebt sich Swift deutlich von Go ab.
@@ -27,16 +27,19 @@ Beide Sprachen setzen zu Speicherverwaltung einen \textit{Garbage Collector} ein
 Das Thema der Speicherverwaltung spielt besonders hinsichtlich der nebenläufigen Programmierung eine große Rolle.
 
 Go und Swift bieten dem Programmierer gute Konzepte zur nebenläufigen Programmierung. 
-Beide Sprachen erleichtern es dem Programmierer Programmteile nebenläufig ausführen zu lassen. 
+Beide Sprachen erleichtern es dem Programmierer Programmteile nebenläufig ausführen zu lassen.
+
+Obwohl Go und Swift nicht explizit funktionale Programmiersprachen sind, ist es möglich, mit beiden funktional zu programmieren.
+Dies bietet dem Programmierer interessante Möglichkeiten.
 
 Mit Go kann nicht generisch programmiert werden.
-Swift hingegen unterstützt generische Programmierung und sollte Programmierern, die Java beherrschen, keine Probleme beim Umstieg bereiten.
+Swift hingegen unterstützt generische Programmierung. 
+Programmierer die beispielsweise aus Java kommen, sollten hinsichtlich generischer Programmierung, keine Probleme beim Umstieg auf Swift haben.
 
-Obwohl Go und Swift nicht explizit funktionale Programmiersprachen sind, ist es möglich mit ihnen funktional zu programmieren, was dem Programmierer interessante Möglichkeiten bietet.
-
-Go präsentiert sich als leichtgewichtige Sprache, welche besonders für Systemprogrammierung und serverseitige Programmierung geeignet scheint.
+Go scheint besonders für Systemprogrammierung und serverseitige Programmierung geeignet zu sein.
 Swift hingegen versucht sich als Allgemein-Programmiersprache zu etablieren.
 Besonders in der objektorientierten Programmierung bietet Swift Vorteile.
+Ein Anwendungsbeispiel in Form einer einfachen ,,Hallo Welt''-Webandwendung konnte in beiden Sprachen mittels eines geeigneten Web-Frameworks implementiert werden.
 
 \chapter{Ausblick}
 Beide Sprachen werden sich in den nächsten Jahren weiterentwickeln und an Bedeutung gewinnen. 
@@ -44,6 +47,6 @@ Eine Implementierung von Swift für Windows ist derzeit noch nicht verfügbar, k
 Da beide Sprachen Open-Source sind, wird es auch interessant werden, wie stark die Community der beiden Sprachen wächst und Entwicklungen vorantreibt.
 
 Beim Thema objektorientierte Programmierung wäre die Implementierung eines größeren Beispiels aus der Realität von Interesse.
-Besonders in Betracht der fehlenden Vererbungsmechanismen in Go und ob sich dieser Aspekt negativ bei der Implementierung auswirkt.
+Im Besonderen, ob die fehlenden Vererbungsmechanismen in Go, sich negativ auf die Implementierung auswirkt.
 
 Hinsichtlich nebenläufiger Programmierung wäre ein genauer Vergleich der Synchronisierungsmechanismen interessant.

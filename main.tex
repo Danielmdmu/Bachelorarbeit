@@ -44,6 +44,12 @@
 \usepackage{tabularx}
 \usepackage{tabulary}
 
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{listing}{\vspace{0cm}}
+\AfterEndEnvironment{listing}{\vspace{-0.5cm}}
+\BeforeBeginEnvironment{minted}{\vspace{-0.3cm}}
+\AfterEndEnvironment{minted}{\vspace{-0.3cm}}
+
 % Paragraph styles
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{6pt}
@@ -138,13 +144,10 @@ BoldItalicFont=timesbi.ttf
 %===========================================================
 \input{Titelseite.tex}
 
-\begin{abstract}
-    \textbf{Abstract in Deutsch}
-\end{abstract}
-
-\begin{abstract}
-    \textbf{Abstract in Englisch}
-\end{abstract}
+%===========================================================
+%== Abstract ===============================================
+%===========================================================
+\input{Abstract.tex}
     
 %===========================================================
 %== Inhaltsverzeichnis =====================================

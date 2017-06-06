@@ -1,20 +1,20 @@
 \chapter{Nebenläufigkeit}
 Oftmals ist es ausreichend, das ein Programm sequenziell abläuft.
 Jedoch gibt es Situationen, in denen die gleichzeitige Abarbeitung von mehreren verschiedenen Aufgaben besser ist \cite[S.128]{Kennedy.2016}.
-Von \cite[S.128]{Kennedy.2016} nennt als Beispiel ein Webdienst, der mehrere Anfragen gleichzeitig behandelt.
+\cite[S.128]{Kennedy.2016} nennt als Beispiel einen Webdienst, der mehrere Anfragen gleichzeitig behandelt.
 Alle Anfragen sind einzigartig und können unabhängig voneinander behandelt werden.
 Die Möglichkeit Anfragen gleichzeitig zu behandeln, kann die Leistung eines solchen Systems erheblich verbessern. 
 
 \section{Möglichkeiten zur Nebenläufigen Programmierung}
 Jede nebenläufig ausgeführte Aktion in Go wird \textit{goroutine} genannt \cite[S.352]{Donovan.2016}.
-Laut \cite[S.352]{Donovan.2016} sind \textit{goroutines} ähnlinch zu \textit{Threads} \todo{Glossar?} in anderen Programmiersprachen.
+Laut \cite[S.352]{Donovan.2016} sind \textit{goroutines} ähnlich zu \textit{Threads} in anderen Programmiersprachen.
 Wird eine Funktion als \textit{goroutine} deklariert, wird die Funktion als unabhängige Einheit angesehen, deren Ausführung geplant wird und auf einem verfügbaren logischen Prozessor ausgeführt wird \cite[S.128]{Kennedy.2016}.
 
 Nebenläufige Programmierung wird oft mit paralleler Programmierung gleich gesetzt. 
 \cite[S.131]{Kennedy.2016} stellt klar, dass Nebenläufigkeit nichts mit Parallelität zu tun hat.
 Kennedy erklärt Parallelität damit, viele Dinge auf einmal zu tun.
 Nebenläufigkeit dagegen dreht sich nach Ansicht von Kennedy darum, viele Dinge auf einmal zu verwalten.
-Um in Go Parallelität zu erreichen werden grundsätzlich mehrere physische Prozessoren benötigt und zusätzlich benötigt Go mehrere logische Prozessoren \cite[S.131]{Kennedy.2016}.
+Um in Go Parallelität zu erreichen, werden grundsätzlich mehrere physische Prozessoren benötigt und zusätzlich benötigt Go mehrere logische Prozessoren \cite[S.131]{Kennedy.2016}.
 
 Ein Beispiel für die Verwendung von \textit{goroutines} wird in \autoref{lst:GoRoutine} gezeigt.
 
@@ -52,10 +52,10 @@ func main() {
 \end{GoCode}
 \end{listing}
 
-In Zeile 13 wird eine anonyme Funktion definiert, welche von 0 - 5 hoch zählen und die aktuelle Zahl ausgeben soll.
+In Zeile 13 wird eine anonyme Funktion definiert, welche von 0 - 5 inkrementiert und die aktuelle Zahl ausgeben soll.
 Durch das Schlüsselwort \textit{go} vor der Definition der Funktion wird diese Funktion zu einer \textit{goroutine}. 
 
-\begin{listing}
+\begin{listing}[H]
 \caption{Output von \autoref{lst:GoRoutine}}
 \label{lst:GoRoutine2}
 \begin{Commandline}
@@ -73,13 +73,13 @@ Um \textit{wg.Wait()} aufrufen zu können, werden noch die Anweisungen aus Zeile
 Zeile 7 weist der Variable \textit{wg} ein \textit{WaitGroup} aus dem Package \textit{sync} zu.
 Anschließend wird der \textit{WaitGroup} mitgeteilt, dass auf eine \textit{goroutine} gewartet werden soll. 
 Die \textit{defer}-Anweisung in Zeile 14 wird am Ende der Funktion aufgerufen, auch im Fehlerfall, und teilt der \textit{WaitGroup} mit, dass die \textit{goroutine} beendet wurde.
-Der Aufruf von \textit{wg.Wait()} sorgt also dafür, das auf die Beendigung der anonymen Funktion gewartet wird.
+Der Aufruf von \textit{wg.Wait()} sorgt also dafür, dass auf die Beendigung der anonymen Funktion gewartet wird.
 
-In Swift sind die Mechanismen zur nebenläufigen Programmierung unter dem Namen \textit{Grand Central Dispatch} \todo{Abkürzung?} bekannt.
-GCD arbeitet mit Dispatch-Queues um abzuarbeitende Aufgaben zu verwalten.
+In Swift sind die Mechanismen zur nebenläufigen Programmierung unter dem Namen \textit{\gls{GCD}} bekannt.
+\gls{GCD} arbeitet mit Dispatch-Queues um abzuarbeitende Aufgaben zu verwalten.
 Jede Queue verwaltet die an sie übergebenen Aufgaben und arbeitet diese der Reihenfolge nach ab (FIFO). 
 Einer \textit{Dispatch-Queue} können Funktionen oder Closures übergeben werden \cite[S.254]{Hoffman.2017}.
-GCD kennt drei verschieden Arten von Queues:
+\gls{GCD} kennt drei verschieden Arten von Queues:
 
 \begin{itemize}
     \item Serial Queues
@@ -92,11 +92,11 @@ Eine \textit{Concurrent Queue} arbeitet die an sie übergebenen Aufgabe nebenlä
 Die Aufgaben in der \textit{Concurrent Queue} werden in der Reihenfolge, in der sie der Queue hinzugefügt wurden, abgearbeitet.
 Die \textit{Main Dispatch Queue} ist global verfügbar und bearbeitet Aufgaben auf dem Haupt-Thread der Anwendung beziehungsweise des Programms \cite[S.255]{Hoffman.2017}.
 
-Hoffman nennt als wichtigsten Vorteil, bei der Verwendung von \textit{Dispatch Queues}, dass das System das Erstellen und Verwalten von Threads übernimmt, und nicht wie sonst die Anwendung \cite[S.255]{Hoffman.2017}.
+Hoffman nennt als wichtigsten Vorteil, bei der Verwendung von \textit{Dispatch Queues}, dass das System das Erstellen und Verwalten von Threads übernimmt, und nicht wie üblich die Anwendung \cite[S.255]{Hoffman.2017}.
 \autoref{lst:NebenläufigkeitSwift} zeigt ein Beispiel für nebenläufige Programmierung in Swift.
 
 \begin{listing}[H]
-\caption{Nebenläufige Programmierung in Swift in Anhlehung an \cite[S.255ff]{Hoffman.2017}}
+\caption{Nebenläufige Programmierung in Swift \\ in Anlehnung an \cite[S.255ff]{Hoffman.2017}}
 \label{lst:NebenläufigkeitSwift}
 \begin{SwiftCode}
 import CoreFoundation
@@ -138,6 +138,6 @@ Zeile 25 und 28 zeigen die zwei unterschiedlichen Möglichkeiten, wie einer \tex
 
 Go und Swift bieten dem Programmierer die Möglichkeit Nebenläufigkeit in seine Programme einzubauen. 
 In Go hat Nebenläufigkeit einen hohen Stellenwert. 
-Dies erkennt man beispielsweise daran, das in Go keine weiteren Bibliotheken eingebunden werden müssen, um nebenläufig zu programmieren.
+Dies erkennt man beispielsweise daran, dass in Go keine weiteren Bibliotheken eingebunden werden müssen, um nebenläufig zu programmieren.
 Nebenläufigkeit ist direkt im Kern von Go integriert.
 Swift bietet mit GCD ein einfach verständliches Modell für nebenläufige Programmierung. 

@@ -7,7 +7,8 @@ Mittlerweile ist Objektorientierung so populär geworden, dass sich viele Softwa
 \cite[S.16]{PoetzschHeffter.2009}
 \end{quote}
 
-Doch welche Merkmale müssen auf eine Programmiersprache zutreffen, um sie objektorientierte Programmiersprache nennen zu können?
+% Doch welche Merkmale müssen auf eine Programmiersprache zutreffen, um sie objektorientierte Programmiersprache nennen zu können?
+Daraus ergibt sich die Frage, welche Merkmale auf eine Programmiersprache zutreffen müssen, um sie objektorientierte Programmiersprache nennen zu können.
 Laut \cite{Lahres.2011} gelten folgende Grundelemente als Basis einer objektorientierten Programmiersprache:
 
 \begin{itemize}
@@ -16,25 +17,26 @@ Laut \cite{Lahres.2011} gelten folgende Grundelemente als Basis einer objektorie
     \item Polymorphie
 \end{itemize}
 
-Erfüllen Go und Swift die Grundvoraussetzungen einer objektorientierten Programmiersprache? Dies soll in diesem Kapitel erörtert werden.
+% Erfüllen Go und Swift die Grundvoraussetzungen einer objektorientierten Programmiersprache? Dies soll in diesem Kapitel erörtert werden.
+In diesem Kapitel soll erörtert werden, ob und inwieweit Go und Swift diese Grundvoraussetzungen einer objektorientierten Programmiersprache erfüllen.
 
 \section{Vererbung}
-Ein zentrales Element der Objektorientierten Programmierung ist die Vererbung. 
-Laut \cite[S. 145]{PoetzschHeffter.2009} bedeutet Vererbung im engeren Sinne, dass eine Klasse Programmteile von einer anderen Klasse automatisch übernimmt. 
+Ein zentrales Element der objektorientierten Programmierung ist die Vererbung. 
+Laut \cite[S.145]{PoetzschHeffter.2009} bedeutet Vererbung im engeren Sinne, dass eine Klasse Programmteile von einer anderen Klasse automatisch übernimmt. 
 Bei der einfachen Form der Vererbung, auch Einfachvererbung genannt, erbt die Klasse von genau einer anderen Klasse.
 Eine andere Form der Vererbung ist die sogenannte Mehrfachvererbung. 
-Bei der Mehrfachvererbung kann eine Klasse von mehreren Klassen erben.
+Hierbei kann eine Klasse von mehreren Klassen erben.
 Von \cite[S.41]{Oestereich.1999} wird darauf hingewiesen, dass zur Vererbung  verschiedene Alternativen existieren und die Möglichkeiten und die Sinnhaftigkeit von Vererbung häufig überschätzt werden.
 
 
-Dieser Abschnitt beschäftigt sich mit der Frage ob Go und Swift Vererbung unterstützen, beziehungsweise, ob eine Aufgabe alternativ implementiert werden kann.
+Dieser Abschnitt beschäftigt sich mit der Frage, ob Go und Swift Vererbung unterstützen, beziehungsweise, ob eine Aufgabe alternativ implementiert werden kann.
 Zu diesem Zweck wird eine gegebene Vererbungshierarchie in Form eines UML-Klassendiagramms beispielhaft in Go und Swift implementiert. 
 Das folgende Beispiel orientiert sich an \cite[]{WilliamKennedy.2013}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Images/Klassendiagramm.pdf}
-    \caption{Klassendiagramm}
+    \caption{Klassendiagramm \\ in Anlehnung an \cite[]{WilliamKennedy.2013}}
     \label{fig:Klassendiagramm}
 \end{figure}
 
@@ -42,11 +44,11 @@ Das folgende Beispiel orientiert sich an \cite[]{WilliamKennedy.2013}.
 Die beiden Klassen \emph{Cat} und \emph{Dog} erben die Eigenschaften der Klasse \emph{Animal}.
 
 
-Da Go keine Vererbung beherrscht, ist Komposition\todo{Glossar} die einzige Möglichkeit eine Hierarchie abzubilden \cite[]{Kennedy.2016}.
+Da Go keine Vererbung beherrscht, ist Komposition die einzige Möglichkeit eine Hierarchie abzubilden \cite[]{Kennedy.2016}.
 Das \autoref{lst:VererbungGo} zeigt die Implementierung der Vererbungshierarchie aus \autoref{fig:Klassendiagramm}.
 
 \begin{listing}[H]
-\caption{Vererbung in Go \cite{Kennedy.2016}}
+\caption{Vererbung in Go \\ Quelle:\cite{Kennedy.2016}}
 \label{lst:VererbungGo}
 \begin{GoCode}
 type Animal struct {
@@ -66,12 +68,12 @@ type Dog struct {
 \end{GoCode}
 \end{listing}
 
-In Zeile 1-4 wird eine neue struct \emph{Animal} definiert.
+In Zeile 1-4 von \autoref{lst:VererbungGo} wird eine neue struct \emph{Animal} definiert.
 Die struct \emph{Animal} wird anschließend in die structs \emph{Cat} und \emph{Dog} eingebunden. 
 Hierdurch bekommen \emph{Cat} und \emph{Dog} die Eigenschaften von \emph{Animal}.
 Bei der struct \emph{Cat} wurde die struct \emph{Animal} mit dem Zusatz \emph{Basics} eingebunden. 
-Dies bedeutet das beim Zugriff auf die geerbten Eigenschaften aus \emph{Animal} zusätzlich \emph{Basics} angegeben werden muss. 
-Die struct \emph{Dog} bindet \emph{Animal} dagegeben anonym ein. 
+Dies bedeutet, dass beim Zugriff auf die geerbten Eigenschaften aus \emph{Animal} zusätzlich \emph{Basics} angegeben werden muss. 
+Die struct \emph{Dog} bindet \emph{Animal} dagegen anonym ein. 
 Die anonyme Variante hat den Vorteil, dass beim Zugriff auf Eigenschaften nicht zwischen geerbten und eigenen Eigenschaften unterschieden werden muss.
 Ist dieses Verhalten explizit gewünscht, sollte der Programmierer der eingebetteten struct einen Namen geben.
 Da es sich bei diesem Vorgehen um eine Konvention handelt, sollte dieser Name immer gleich lauten und für größere Projekte separat festgehalten werden. 
@@ -81,7 +83,7 @@ Von Pike, einem der Entwickler von Go, wird der Verzicht auf Vererbung mit folge
 \enquote{Go takes an unusual approach to object-oriented programming, allowing methods on any type, not just classes, but without any form of type-based inheritance like subclassing. This means there is no type hierarchy. This was an intentional design choice. Although type hierarchies have been used to build much successful software, it is our opinion that the model has been overused and that it is worth taking a step back.}\cite[]{RobPike.2012}
 \end{quote}
 
-Swift kennt sowohl Strukturen als auch Klassen. Von Apple werden Klassen und Strukturen wie folgt beschrieben. 
+Swift kennt sowohl Strukturen als auch Klassen. Von Apple werden Klassen und Strukturen wie folgt beschrieben:
 \begin{quote}
 \enquote{Classes and structures are general-purpose, flexible constructs that become the building blocks of your program’s code. You define properties and methods to add functionality to your classes and
 structures by using exactly the same syntax as for constants, variables, and functions.} \cite[S.183]{Apple.2017}
@@ -118,7 +120,7 @@ Im Gegensatz zu Go beherrscht Swift den Mechanismus der Vererbung.
 Eine Klasse in Swift kann immer nur von genau einer Basisklasse abgeleitet werden, bekannt als einfache Vererbung \cite[S.125]{Hoffman.2017}.
 
 \section{Datenkapselung}
-Während die strukturierte Programmierung Daten und Logik voneinander trennt, gehören in der objektorientierten Programmierung die Daten explizit einem Objekt. 
+Während die strukturierte Programmierung Daten und Logik voneinander trennt, gehören in der objektorientierten Programmierung die Daten explizit zu einem Objekt. 
 Der direkte Zugriff auf die Daten eines Objekts ist nicht erlaubt. 
 So haben Objekte das alleinige Recht lesend und schreibend auf ihre Daten zuzugreifen. 
 Ein Zugriff auf die Daten von Außen muss über eine klar definierte Schnittstelle erfolgen.
@@ -127,24 +129,24 @@ In \autoref{fig:Kapselung} ist dargestellt, wie der direkte Zugriff auf die Date
 \begin{figure}[H]
     \centering
     \includegraphics[height=8cm]{Images/Kapselung.pdf}
-    \caption{Datenkapselung in Anlehnung an \cite[]{Lahres.2011}}
+    \caption{Datenkapselung \\ in Anlehnung an \cite[]{Lahres.2011}}
     \label{fig:Kapselung}
 \end{figure}
 
 Ein Vorteil der Datenkapselung ist laut \cite[]{Lahres.2011}, dass ein Objekt selbst für die Konsistenz seiner Daten sorgen kann. 
-Von \cite[S.86f]{PoetzschHeffter.2009} wird als Vorteil der das Prinzip des \emph{Information Hiding} genannt. 
-Da auf die Daten nur über eine definierte Schnittstelle zugegriffen werden kann, ist es möglich Implementierungsdetails hinter der Schnittstelle zu ändern ohne das Programmteile, die diese Klasse verwenden, angepasst werden müssen. 
+Von \cite[S.86f]{PoetzschHeffter.2009} wird als Vorteil das Prinzip des \emph{Information Hiding} genannt. 
+Da auf die Daten nur über eine definierte Schnittstelle zugegriffen werden kann, ist es möglich Implementierungsdetails hinter der Schnittstelle zu ändern ohne dass Programmteile, die diese Klasse verwenden, angepasst werden müssen. 
 Dies setzt voraus, dass die Schnittstelle gleich bleibt.
 
 Um den Zugriff auf die Daten eines Objektes zu unterbinden oder zu ermöglichen, bietet Go die Möglichkeit die Eigenschaften eines Objektes, ähnlich der Zugriffsmodifizierer in Java, entweder \emph{Public} oder \emph{Private} zu deklarieren. 
 Im Unterschied zu Java verwendet Go allerdings keine Schlüsselwörter wie \emph{Public} oder \emph{Private}.
 Wird in Go der erste Buchstabe des Names eines Typs, Variable/Konstante oder Funktion klein geschrieben, ist das Element nur innerhalb des \emph{Package} sichtbar, also Private. 
-Wird der erste Buchstaben des Names jedoch groß geschrieben, ist dass Element auch außerhalb des \emph{Package} sichtbar, also Public.
+Wird der erste Buchstabe des Names jedoch groß geschrieben, ist das Element auch außerhalb des \emph{Package} sichtbar, also Public.
 Das \autoref{lst:KapselungGo} zeigt ein Beispiel für diesen Mechanismus. 
-In Zeile 6 wird eine Eigenschaft \emph{age} definiert die aufgrund der Kleinschreibung nicht aus dem Package \emph{animals} exportiert wird. 
+In Zeile 6 wird eine Eigenschaft \emph{age} definiert, die aufgrund der Kleinschreibung nicht aus dem Package \emph{animals} exportiert wird. 
 
 \begin{listing}[H]
-\caption{Datenkapselung in Go \cite[]{Kennedy.GoExport}}
+\caption{Datenkapselung in Go \\ Quelle:\cite[]{Kennedy.GoExport}}
 \label{lst:KapselungGo}
 \begin{GoCode}
 package animals
@@ -162,7 +164,7 @@ Nachdem in Zeile 5 das Package \emph{animals} importiert wurde, kann die struct 
 Da die Eigenschaft \emph{age} nicht aus dem Package \emph{animals} exportiert wird, gibt der Compiler die Fehlermeldung aus Zeile 17 aus. 
 
 \begin{listing}[H]
-\caption{Datenkapselung in Go \cite[]{Kennedy.GoExport}}
+\caption{Datenkapselung in Go \\ Quelle:\cite[]{Kennedy.GoExport}}
 \label{lst:KapselungGo2}
 \begin{GoCode}
 package main
@@ -185,7 +187,7 @@ func main() {
 \end{GoCode}
 \end{listing}
 
-Eine Möglichkeit die Eigenschaft \emph{age} zugänglich zu machen, ist den Zugriff über eine Get-Funktion und Set-Funktion zu realisieren.
+Eine Möglichkeit die Eigenschaft \emph{age} zugänglich zu machen, ist es, den Zugriff über eine Get-Funktion und Set-Funktion zu realisieren.
 Hierzu wurde im \autoref{lst:KapselungGo3} jeweils eine Funktion für den lesenden und schreibenden Zugriff auf die Eigenschaft \emph{age} implementiert. 
 Die beiden Funktionsnamen setzen sich aus dem Namen der jeweiligen Eigenschaft, hier \emph{Age} und einem Prefix, \emph{Get} oder \emph{Set}, zusammen.
 Es ist zu beachten, dass die Namen der beiden Funktionen (\emph{SetAge} und \emph{GetAge}) mit einem Großbuchstaben beginnen, da diese sonst nicht exportiert werden. 
@@ -213,9 +215,9 @@ func (d *Dog) GetAge() int {
 \end{GoCode}
 \end{listing}
 
-Auch Swift bietet die Möglichkeit über bietet Möglichkeiten zur Zugriffskontrolle. 
-Die Zugriffs-Level sind relativ zu der Quellcodedatei und dem Modul in dem die Entität definiert wurde \cite[S.394]{Apple.2017}.
-Laut der offiziellen Dokumentation \cite[S.394]{Apple.2017} bietet Swift die folgenden fünf Zugriffs-Level
+Auch Swift bietet Möglichkeiten zur Zugriffskontrolle. 
+Die Zugriffs-Level sind relativ zu der Quellcodedatei und dem Modul, in dem die Entität definiert wurde \cite[S.394]{Apple.2017}.
+Laut der offiziellen Dokumentation \cite[S.394]{Apple.2017} bietet Swift die folgenden fünf Zugriffs-Level:
 
 \begin{itemize}
     \item Open access
@@ -226,17 +228,17 @@ Laut der offiziellen Dokumentation \cite[S.394]{Apple.2017} bietet Swift die fol
 \end{itemize}
 
 Eine Entität, die als \textit{open} oder \textit{public} deklariert wurde, kann aus jeder Quellcodedatei im gleichen Modul verwendet werden. 
-Ebenso kann jede Quellcodedatei, welche das Modul importiert in dem die Entität definiert wurde, auf die Entität zugreifen. 
+Ebenso kann jede Quellcodedatei, welche das Modul importiert, in dem die Entität definiert wurde, auf die Entität zugreifen. 
 Das Schlüsselwort \textit{open} greift nur bei Klassen und deren Eigenschaften.
-Eine Klasse die als \textit{open} deklariert wurde, kann auch außerhalb ihres eigenen Moduls, vererbt werden, wenn das zugehörie Modul importiert wurde.
+Eine Klasse, die als \textit{open} deklariert wurde, kann auch außerhalb ihres eigenen Moduls vererbt werden, wenn das zugehörige Modul importiert wurde.
 Dies unterscheidet das \textit{open}-Zugriffslevel von dem \textit{public}-Zugriffslevel.
 Wird eine Entität als \textit{internal} definiert, ist diese lediglich in Quellcodedateien des eigenen Moduls verfügbar. 
 Das Zugriffslevel \textit{fileprivate} schränkt den Zugriff auf die eigene Quellcodedatei ein.
-Das restriktivste Zugriffslevel, \textit{private}, schränkt den Zugriff auf die umschließende Deklaration, beispielsweise eine Klasse, ein.
+Das restriktivste Zugriffslevel \textit{private} schränkt den Zugriff auf die umschließende Deklaration, beispielsweise eine Klasse, ein.
 Ist kein Zugriffslevel definiert, verwendet der Compiler das \textit{internal}-Zugriffslevel.
 
-\begin{listing}
-\caption{Zugriffslevel in Swift \cite[S.396]{Apple.2017}}
+\begin{listing}[H]
+\caption{Zugriffslevel in Swift \\ Quelle:\cite[S.396]{Apple.2017}}
 \label{lst:ZugriffslevelSwift}
 \begin{SwiftCode}
 public class SomePublicClass {}
@@ -252,10 +254,10 @@ private func somePrivateFunction() {}
 \end{listing}
 
 Neben der Möglichkeit den Zugriff zu beschränken, bietet Swift die Möglichkeit Getter/Setter zu verwenden.
-autoref{lst:DatenkapselungSwfit} zeigt ein Beispiel für Datenkapselung in Swift. 
+\autoref{lst:DatenkapselungSwfit} zeigt ein Beispiel für Datenkapselung in Swift. 
 Das Beispiel wurde analog zu dem \autoref{lst:KapselungGo3} in Go implementiert.
 
-\begin{listing}
+\begin{listing}[H]
 \caption{Datenkapselung in Swift}
 \label{lst:DatenkapselungSwfit}
 \begin{SwiftCode}
@@ -272,15 +274,15 @@ class Dog {
 \end{SwiftCode}
 \end{listing}
 
-Die verschiedenen Zugriffslevel in Swift ermöglichen es den Zugriff auf Entitäten viel feiner zu steuern als in Go.
-Die Möglichkeit von Go, Entitäten als \textit{private} zu deklarieren (Kleinschreibung des Namens), ist in Swift mit dem Zugriffslevel \textit{iternal access} vergleichbar (Schlüsselwort \textit{interal}). 
+Die verschiedenen Zugriffslevel in Swift ermöglichen es, den Zugriff auf Entitäten viel feiner zu steuern als in Go.
+Die Möglichkeit von Go, Entitäten als \textit{private} zu deklarieren (Kleinschreibung des Namens), ist in Swift mit dem Zugriffslevel \textit{internal access} vergleichbar (Schlüsselwort \textit{internal}). 
 Wird in Go eine Entität als \textit{public} deklariert (Großschreibung des Namens), ist dies mit dem Zugriffslevel \textit{public access} (Schlüsselwort \textit{public}) in Swift zu vergleichen.
 Der Einsatz von Getter/Setter-Methoden in Swift ermöglicht dem Programmierer eine einfachere Schreibweise von Zuweisungen. 
 In \autoref{lst:GetterSetterSWift} ist die Verwendung der Klasse aus \autoref{lst:DatenkapselungSwfit} zu sehen. 
-der Variable \textit{aDog} wird eine neue Instanz der Klasse \textit{Dog} zugewiesen.
+Der Variablen \textit{aDog} wird eine neue Instanz der Klasse \textit{Dog} zugewiesen.
 Anschließend wird der Instanzvariablen \textit{Age} der Wert 2 zugewiesen.
 
-\begin{listing}
+\begin{listing}[H]
 \caption{Einsatz von Getter/Setter in Swift}
 \label{lst:GetterSetterSWift}
 \begin{SwiftCode}
@@ -296,7 +298,7 @@ Da Go keine expliziten Getter/Setter-Methoden unterstützt, ist das Vorgehen aus
 Um das Konzept der Datenkapselung in Go zu verfolgen, muss diese Konvention eingehalten werden.
 Swift erleichtert es dem Entwickler, dieses Konzept zu verfolgen.
 
-\begin{listing}
+\begin{listing}[H]
 \caption{Einsatz von Getter/Setter in Go}
 \label{lst:GetterSetterGo}
 \begin{GoCode}
@@ -307,21 +309,21 @@ Dog.SetAge(2)
 \end{listing}
 
 \section{Polymorphie}
-Neben Vererbung und Datenkapselung ist Polymorphie ein Grundelement der Objektorientierten Programmierung.
-\cite[]{Lahres.2011} versteht unter Polymorphie in der Objektorientierten Programmierung, dass verschiedene Objekte bei Aufruf derselben Operation unterschiedliches Verhalten zeigen können. 
+Neben Vererbung und Datenkapselung ist \textit{Polymorphie} ein Grundelement der objektorientierten Programmierung.
+\cite[]{Lahres.2011} versteht unter \textit{Polymorphie} in der objektorientierten Programmierung, dass verschiedene Objekte bei Aufruf derselben Operation unterschiedliches Verhalten zeigen können. 
 In \autoref{fig:Polymorphie} wird ein praktisches Beispiel für Polymorphie aus dem Alltag gezeigt. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[height=5cm]{Images/Polymorphie}
-    \caption{Beispiel für Polymorphie \cite[]{Lahres.2011}}
+    \caption{Beispiel für Polymorphie \\ Quelle:\cite[]{Lahres.2011}}
     \label{fig:Polymorphie}
 \end{figure}
 
 Polymorphie wird von \cite[]{Lahres.2011} mit ,,Vielgestaltigkeit'' übersetzt. Das Beispiel von \cite[]{Lahres.2011} bezieht sich auf die in \autoref{fig:Polymorphie} abgebildeten Glühbirnen und die zugehörige Fassung. 
 Eine Glühbirne kann unterschiedliche Formen und Stärken haben, aber solange sie sich an die Norm für die Fassung hält, wird sie in der Fassung funktionieren. 
 In Bezug auf Objektorientierung nennt \cite[]{Lahres.2011} das Beispiel ein Berechnungsverfahren gegen ein effizienteres Berechnungsverfahren zu tauschen. 
-Hierzu muss nur das Berechnungsverfahren, die Glühbirne, gegen eine neue Implementierung getauscht werden und in die vorgesehen ,,Fassung'' geschraubt werden.
+Hierzu muss nur das Berechnungsverfahren, die Glühbirne, gegen eine neue Implementierung getauscht werden und in die vorhergesehene ,,Fassung'' geschraubt werden.
 
 \begin{quote}
 \enquote{An den richtigen Punkten eingesetzt, kann die Nutzung der Polymorphie dadurch zu wesentlich flexibleren Programmen führen. Sie steigert damit die Wartbarkeit und Änderbarkeit unserer Software.}
@@ -329,11 +331,11 @@ Hierzu muss nur das Berechnungsverfahren, die Glühbirne, gegen eine neue Implem
 \end{quote}
 
 An dieser Stelle soll der Einsatz von Polymorphie in Go und Swift untersucht werden. 
-Nach Ansicht von \cite[]{WilliamKennedy.2013} ist Vererbung ohne Polymorphie nutzlos, und die Art der Implementierung von Interfaces in Go macht Vererbung überflüssig. 
+Nach Ansicht von \cite[]{WilliamKennedy.2013} ist Vererbung ohne Polymorphie nutzlos und die Art der Implementierung von Interfaces in Go macht Vererbung überflüssig. 
 Als Grundlage dient das \autoref{lst:VererbungGo}. 
 
 \begin{listing}[H]
-\caption{Polymorphie in Go in Anlehung an \cite[]{WilliamKennedy.2013}}
+\caption{Polymorphie in Go \\ in Anlehung an \cite[]{WilliamKennedy.2013}}
 \label{lst:PolymorhpieGo}
 \begin{GoCode}
 package main
@@ -387,7 +389,7 @@ func MakeSomeNoise(animalSounder AnimalSounder) {
 \end{GoCode}
 \end{listing}
 
-Im Unterschied zu \autoref{lst:VererbungGo} wurde in \autoref{lst:PolymorhpieGo} den Objekten ein Vehalten in Form von Methoden gegeben.
+Im Unterschied zu \autoref{lst:VererbungGo} wurde in \autoref{lst:PolymorhpieGo} den Objekten ein Verhalten in Form von Methoden gegeben.
 Im Interface \emph{AnimalSounder} ist eine Funktion \emph{MakeNoise()} definiert. 
 Dieses Interface wird von \emph{Dog} (Zeile 28 - 39) und \emph{Cat} (Zeile 42 - 44) implementiert. 
 Sobald in Go ein Type ein Interface implementiert, repräsentiert dies das Interface. 
@@ -401,7 +403,7 @@ Anschließend wird die Funktion \emph{MakeSomeNoise} jeweils mit den erzeugten I
 Dies ist möglich, da \emph{Cat} und \emph{Dog} das Interface \emph{AnimalSounder} implementieren. 
 
 \begin{listing}[H]
-\caption{Polymorphie in Go in Anlehung an \cite[]{WilliamKennedy.2013}}
+\caption{Polymorphie in Go \\ in Anlehung an \cite[]{WilliamKennedy.2013}}
 \label{lst:PolymorhpieGo2}
 \begin{GoCode}
 package main
@@ -435,7 +437,7 @@ func main() {
 
 Um in Swift Polymorphie zu implementieren, werden \textit{protocols} eingesetzt.
 \textit{Protocols} sind ähnlich zu \textit{Interfaces} aus anderen Programmiersprachen wie Java und Go.
-Von Apple werden \textit{protocols} wie folgt definiert.
+Von Apple werden \textit{protocols} wie folgt definiert:
 
 \begin{quote}
 \enquote{A protocol defines a blueprint of methods, properties, and other requirements that suit a particular
@@ -457,7 +459,7 @@ Die Klassen \textit{Dog} und \textit{Cat} erben von der Basisklasse \textit{Anim
 Bei der Implementierung der Methode \textit{MakeNoise} in den Klassen \textit{Dog} und \textit{Cat} wird die von der Klasse \textit{Animal} geerbte Methode \textit{PerformNoise} mit den spezifischen Parametern aufgerufen.
 
 \begin{listing}[H]
-\caption{Polymorphie in Swift}
+\caption{Polymorphie in Swift I}
 \label{lst:PolymorphieSwift1}
 \begin{SwiftCode}
 class Animal{
@@ -499,11 +501,11 @@ class Cat : Animal, AnimalSounder{
 \end{listing}
 
 \autoref{lst:PolymorphieSwift2} zeigt die Verwendung der Klassen aus \autoref{lst:PolymorphieSwift1}.
-Die Beiden Objekte \textit{myDog} und \textit{myCat} werden mit den gleichen Werten initialisiert, welche auch in der Implementierung in Go in \autoref{lst:PolymorhpieGo2} verwendet werden..
+Die beiden Objekte \textit{myDog} und \textit{myCat} werden mit den gleichen Werten initialisiert, welche auch in der Implementierung in Go in \autoref{lst:PolymorhpieGo2} verwendet werden.
 In Zeile 11 und 12 wird bei beiden Objekten die Methode \textit{MakeNoise} aufgerufen, welche zu der Ausgabe in Zeile 15 - 17 führt. 
 
 \begin{listing}[H]
-\caption{Polymorphie in Swift}
+\caption{Polymorphie in Swift II}
 \label{lst:PolymorphieSwift2}
 \begin{SwiftCode}
 var myDog = Dog()
@@ -543,10 +545,10 @@ store some useful data.} \cite[59]{Manning.2016}
 \end{quote}
 
 In den Codebeispielen konnten alle Anforderungen erfüllt werden.
-Es muss jedoch berücksichtigt werden, das es sich hierbei um einfache Anforderungen handelt, die nicht der Realität entsprechen. 
-Das Go keine Vererbung unterstützt ist im Vergleich zu Swift der größte Nachteil.
+Es muss jedoch berücksichtigt werden, dass es sich hierbei um einfache Anforderungen handelt, die nicht der Realität entsprechen. 
+Das Go keine Vererbung unterstützt, ist im Vergleich zu Swift der größte Nachteil.
 Die Art in der Objektorientierung in Swift umgesetzt ist, ist für Umsteiger von anderen objektorientierten Programmiersprachen (Java, C\#) einfacher zu erlernen und zu verstehen.
-\cite[]{WilliamKennedy.2013} beschreibt die objektorientierten Fähigkeiten wie folgt.
+\cite[]{WilliamKennedy.2013} beschreibt die objektorientierten Fähigkeiten von Go wie folgt.
 
 \begin{quote}
 \enquote{Go took the best parts of OOP, left out the rest and gave us a better way to write polymorphic code.} \cite[]{WilliamKennedy.2013}
@@ -559,12 +561,12 @@ Swift kennt diese Funktionalität unter dem Namen \textit{Extensions}.
 Ein Auszug aus der Swift Dokumentation \cite[S331]{Apple.2017} bietet einen Überblick über die Möglichkeiten, die Extensions in Swift bieten:
 
 \begin{itemize}
-    \item Add computed instance properties and computed type properties    
-    \item Define instance methods and type methods
-    \item Provide new initializers
-    \item Define subscripts
-    \item Define and use new nested types
-    \item Make an existing type conform to a protocol
+    \item \enquote{Add computed instance properties and computed type properties}    
+    \item \enquote{Define instance methods and type methods}
+    \item \enquote{Provide new initializers}
+    \item \enquote{Define subscripts}
+    \item \enquote{Define and use new nested types}
+    \item \enquote{Make an existing type conform to a protocol}
 \end{itemize}
 
 \autoref{lst:SwiftExtensions} zeigt die Anwendung von \textit{Extensions} in Swift.
@@ -573,7 +575,7 @@ Eine \textit{Extension} kann bestehende Funktionalitäten eines Objektes nicht �
 Auch \textit{Protocols} können mit \textit{Extensions} erweitert werden.
 
 \begin{listing}
-\caption{\textit{Extensions} in Swift Quelle: \cite[S.332f]{Apple.2017}}
+\caption{\textit{Extensions} in Swift \\ Quelle:\cite[S.332f]{Apple.2017}}
 \label{lst:SwiftExtensions}
 \begin{SwiftCode}
 extension Double {

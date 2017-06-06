@@ -4,7 +4,7 @@
 Neben den etablierten Programmiersprachen, wie Java und C/C++, werden kontinuierlich neue Programmiersprachen entworfen.
 Viele neue Sprachen werden als Open-Source entwickelt und auf Github gehostet.
 
-Folgende Auflistung zeigt die auf Github beliebtesten Programmiersprachen-Projekte (Stand: Mai 2017) \cite{Github}.
+Folgende Auflistung zeigt die auf Github beliebtesten Programmiersprachen-Projekte (Stand: Mai 2017) \cite{Github}:
 
 % \begin{table}[H]
 %     \centering
@@ -27,13 +27,13 @@ Folgende Auflistung zeigt die auf Github beliebtesten Programmiersprachen-Projek
 %     \label{tab:Github}
 % \end{table}
 
-\begin{itemize}
+\begin{enumerate}
     \item Swift
     \item Go
     \item TypeScript
     \item Rust
     \item Kotlin
-\end{itemize}
+\end{enumerate}
 
 Mit Go und Swift befinden sich zwei Projekte darunter, die aufgrund ihrer Herkunft besondere Aufmerksamkeit erregen.
 Go wird seit 2009 von Google entwickelt und Swift wurde 2014 von Apple vorgestellt.
@@ -57,7 +57,8 @@ Auf die Frage, warum Swift entwickelt wurde, gibt die offizielle Webseite von Sw
 \enquote{The goal of the Swift project is to create the best available language for uses ranging from systems programming, to mobile and desktop apps, scaling up to cloud services.}\cite{Swift.Homepage}
 \end{quote}
 
-Swift verfolgt mit dem Ziel, eine der besten verfügbaren Programmiersprachen zu entwickeln, ein sehr ambitioniertes Ziel.
+% Swift verfolgt mit dem Ziel, eine der besten verfügbaren Programmiersprachen zu entwickeln, ein sehr ambitioniertes Ziel.
+Apple hat demnach den Anspruch eine der besten verfügbaren Programmiersprachen zu entwickeln und verfolgt somit ein sehr ambitioniertes Ziel.
 
 \section{Motivation}
 Google und Apple verfolgen demnach beide das Ziel die heutigen Anforderungen an moderne Softwareentwicklung mit einer neuen Programmiersprache zu erfüllen.  
@@ -110,13 +111,13 @@ Go hat sich dabei von Platz 42 auf Platz 16 verbessert.
     \hline
     12 & 13 & Visual Basic \\
     \hline
-    \rowcolor[gray]{0.9} 13 & 15 & Swift \\
+    13 & 15 & Swift \\
     \hline
     14 & 16 & R \\
     \hline
     15 & 14 & Objective-C \\
     \hline
-    \rowcolor[gray]{0.9} 16 & 42 & Go \\
+    16 & 42 & Go \\
     \hline
     17 & 18 & MATLAB \\	
     \hline
@@ -132,36 +133,40 @@ Go hat sich dabei von Platz 42 auf Platz 16 verbessert.
 \end{table}
 
 \section{Aufgabenstellung}
-Go und Swift haben somit Interesse bei Softwareentwicklern geweckt.
+% Go und Swift haben somit Interesse bei Softwareentwicklern geweckt.
+Da das Interesse der Softwareentwickler an beiden Sprachen so enorm ist, sollen im weiteren Verlauf dieser Arbeit beide Programmiersprachen genauer betrachtet und Gemeinsamkeiten und Unterschied aufgezeigt werden.
 In \autoref{tab:Vergleich} ist eine Gegenüberstellung von Go und Swift zu sehen.
 
 \begin{table}[H]
     \centering
-    \begin{tabularx}{\textwidth}{|X|X|}
+    \begin{tabularx}{\textwidth}{|X|X|X|}
     \hline 
     \rowcolor[gray]{0.75} \textbf{Go} & \textbf{Swift} \\
     \hline
-	Google & Apple \\
+	Unternehmen & Google & Apple \\
 	\hline
-	Open Source & Open Source \\
+	Lizenz & Open Source & Open Source \\
 	\hline
-	Kompiliert & Kompiliert \\
+	Art der Sprache & Kompiliert & Kompiliert \\
 	\hline  
-	Statisches Typsystem & Statisches Typsystem \\
+	Typsystem & Statisches Typsystem & Statisches Typsystem \\
 	\hline
-	Garbage Collected & Garbage Collected \\
+	Speicherverwaltung & Garbage Collected & Garbage Collected \\
     \hline
     \end{tabularx}
     \caption{Gegenüberstellung Go und Swift}
     \label{tab:Vergleich}
 \end{table}
 
-% Der einzige Unterschied der beiden Sprachen, bei diesem Kriterien, ist, dass Go von Google und Swift von Apple entwickelt wurde. 
-Ein oberflächlicher Vergleich von Go und Swift wird zu dem Ergebnis kommen, dass die beiden Sprachen gleich sind.
-%Doch worin liegen die Unterschiede der beiden Programmiersprachen?
-Die Unterschiede von Go und Swift müssen also im Detail liegen.
-%Welche Möglichkeiten gibt es, Programmiersprachen zu vergleichen?
-Ein näherer Vergleich der beiden Programmiersprachen sollte mögliche Gemeinsamkeiten und Unterschiede aufzeigen können.
+% % Der einzige Unterschied der beiden Sprachen, bei diesem Kriterien, ist, dass Go von Google und Swift von Apple entwickelt wurde. 
+% Ein oberflächlicher Vergleich von Go und Swift wird zu dem Ergebnis kommen, dass die beiden Sprachen gleich sind.
+% %Doch worin liegen die Unterschiede der beiden Programmiersprachen?
+% Die Unterschiede von Go und Swift müssen also im Detail liegen.
+% %Welche Möglichkeiten gibt es, Programmiersprachen zu vergleichen?
+% Ein näherer Vergleich der beiden Programmiersprachen sollte mögliche Gemeinsamkeiten und Unterschiede aufzeigen können.
+
+Der Vergleich der oberflächlichen Eigenschaften in \autoref{tab:Vergleich} lässt vermuten, dass die beiden Sprachen sehr ähnlich oder sogar gleich sind.
+Nur durch einen tiefer gehenden Vergleich der beiden Programmiersprachen kann analysiert werden, inwieweit beide Sprachen Gemeinsamkeiten und Unterschiede aufweisen.
 
 Von \cite{Comparsion} wurde ein Vergleich von Programmiersprachen durchgeführt.
 Einige der Vergleichskriterien dieser Arbeit sind:
@@ -176,10 +181,10 @@ Einige der Vergleichskriterien dieser Arbeit sind:
 % Diese aufgeführten Vergleichskriterien sind zwar messbar, allerdings spiegeln sie nicht die Anforderungen an moderne Programmiersprachen wieder. 
 Die aufgeführten Kriterien sind zwar messbar, allerdings sind diese Kriterien sehr abhängig von der zu Grunde liegenden Hardware.
 
-Aus diesem Grund wurden für diese Arbeit eigene Vergleichskriterien aufgestellt, um Go und Swift miteinander zu vergleichen.
-Die beiden Sprachen sollen mit diesen Kriterien miteinander verglichen werden.
+Aus diesem Grund wurden für diese Arbeit eigene Kriterien aufgestellt, um Go und Swift miteinander zu vergleichen.
 
 \section{Aufbau der Arbeit}
 Jedes Kapitel dieser Arbeit entspricht einem Vergleichskriterium.
 Die zugehörigen Abschnitte konkretisieren das Vergleichskriterium.
-Als nötiges Vorwissen wird vom Leser erwartet, dass er Kenntnisse in einer höheren Programmiersprache, wie Java, C\# oder C/C++, besitzt. 
+% Als nötiges Vorwissen wird vom Leser erwartet, dass er Kenntnisse in einer höheren Programmiersprache, wie Java, C\# oder C/C++, besitzt. 
+Zum Verständnis der folgenden Gegenüberstellung und Analyse beider Programmiersprachen sind Kenntnisse in einer höheren Programmiersprache, wie Java, C\# oder C/C++ erforderlich.

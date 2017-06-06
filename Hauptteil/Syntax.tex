@@ -41,8 +41,8 @@ In Zeile 6 wird die Funktion \emph{Println} aus dem Package fmt aufgerufen, welc
 
 
 %Swift benötigt für das gleiche Ergebnis verhältnismäßig wenige Anweisungen. 
-Wie in \autoref{lst:helloWorldSwift} zu sehen, benötigt Swift für die Ausgabe des Textes ,,Hallo Welt - das ist Swfit'' nur eine Zeile Quelltext.
-Es müssen keine Bibliotheken eingebunden werden. Da sich die \emph{print}-Anweisung nicht in einer Funktion befindet, muss auch keine \emph{main}-Funktion definiert werden\cite{Apple.2017}.
+Wie in \autoref{lst:helloWorldSwift} zu sehen, benötigt Swift für die Ausgabe des Textes ,,Hallo Welt - das ist Swift'' nur eine Zeile Quelltext.
+Es müssen keine Bibliotheken eingebunden werden. Da sich die \emph{print}-Anweisung nicht in einer Funktion befindet, muss auch keine \emph{main}-Funktion definiert werden \cite{Apple.2017}.
 Auch Swift wird kompiliert.
 
 \begin{listing}[H]
@@ -65,7 +65,7 @@ Im Gegensatz zu Zeile 2 ist zur Variable \emph{variable1} kein Datentyp angegebe
 Der Datentyp wird vom Compiler selbstständig erkannt. 
 Dieser Mechanismus wird \emph{Type Inference} genannt und wird im \autoref{sec:TypeInference} \nameref{sec:TypeInference} näher erläutert.
 
-\begin{listing}
+\begin{listing}[H]
 \caption{Variablen und Konstanten in Go}
 \label{lst:VariableGo}
 \begin{GoCode}
@@ -80,7 +80,7 @@ Analog zu Go verwendet auch Swift das Schlüsselwort \emph{var} zur Definition v
 Auch Swift beherrscht \emph{Type Inference} (siehe \autoref{sec:TypeInference} \nameref{sec:TypeInference}).
 Eine Konstante wird in Swift mit dem Schlüsselwort \emph{let} definiert.
 
-\begin{listing}
+\begin{listing}[H]
 \caption{Variablen und Konstanten in Swift}
 \label{lst:VariableSwift}
 \begin{SwiftCode}
@@ -91,19 +91,19 @@ let konstante = "Konstante in Swift"
 \end{listing}
 
 \section{Funktionen}
-Eine Funktion ermöglichte es eine Abfolge von Anweisungen zusammenzufassen und diese in einem Programm auch mehrmals aufzurufen. 
-Mit Funktionen kann eine Aufgabe in kleine Teile aufgeteilt werden.
+Eine Funktion ermöglicht es, eine Abfolge von Anweisungen zusammenzufassen und diese in einem Programm auch mehrmals aufzurufen. 
+Mit Funktionen kann eine Aufgabe in kleine Teile zerlegt werden.
 Bei der Verwendung einer Funktion müssen keine Details zur Implementierung vorhanden sein.
-Funktionen sind somit ein wichtiger Teil jeder Programmiersprache \cite{Kennedy.2016}
+Funktionen sind somit ein wichtiger Teil jeder Programmiersprache \cite{Kennedy.2016}.
 
 Im \autoref{lst:FunktionGo} ist der Grundaufbau einer Funktion in Go dargestellt.
 Mit dem Schlüsselwort \emph{func} wird eine Funktion eingeleitet, gefolgt vom Namen der Funktion.
 Eine Aufzählung an Parametern wird in Klammern angegeben. 
-Anschließend kann eine Liste von Rückgabewerte definiert werden.
+Anschließend kann eine Liste von Rückgabewerten definiert werden.
 Der Funktionskörper befindet sich in geschweiften Klammern.
 
-\begin{listing}
-\caption{Aufbau einer Funktion in Go \cite{Donovan.2016}}
+\begin{listing}[H]
+\caption{Aufbau einer Funktion in Go \\ Quelle:\cite{Donovan.2016}}
 \label{lst:FunktionGo}
 \begin{GoCode}
 func name(parameter-list) (result-list){
@@ -118,8 +118,8 @@ Als Rückgabewert liefert die Funktion die Summe der beiden Parameter.
 Bei nur einem Rückgabewert ist die Klammer um den Rückgabewert optional.
 Sobald ein Rückgabewert definiert ist, erwartet der Compiler im Funktionskörper das \emph{return} Schlüsselwort.
 
-\begin{listing}
-\caption{Beispiel-Funktionen in Go}
+\begin{listing}[H]
+\caption{Funktionen in Go I}
 \label{lst:BeispielFunktionGo}
 \begin{GoCode}
 func add(a int, b int) (int) {
@@ -135,8 +135,8 @@ Mit dem Schlüsselwort \emph{return} werden alle Rückgabewerte in der festgeleg
 Im Unterschied dazu müssen in der Funktion \emph{addSubMulDiv} die gewünschten Rückgabewerte an die \emph{return}-Anweisung angehängt werden.
 Hierbei muss die Reihenfolge der Rückgabewerte beachtet werden, da auch beim Aufruf der Funktion die Rückgabewerte in dieser Reihenfolge zurückgegeben werden (siehe Zeile 13). 
 
-\begin{listing}
-\caption{Beispiel-Funktionen in Go}
+\begin{listing}[H]
+\caption{Funktionen in Go II}
 \label{lst:BeispielFunktionMultiGo}
 \begin{GoCode}
 func addSubMulDiv(a int, b int) (int, int, int, int){
@@ -156,13 +156,13 @@ var a, s, m, d = addSubMulDiv(3,4)
 \end{listing}
 
 Das \autoref{lst:FunktionenSwift} zeigt den Aufbau einer Funktion in Swift. 
-Ähnlich zu Go verwendet auf Swift das Schlüsselwort \emph{func}.
+Ähnlich zu Go verwendet auch Swift das Schlüsselwort \emph{func}.
 Auch sonst ähnelt der Grundaufbau einer Funktion in Swift dem in Go.
-Im Gegensatz zu Go muss die Definition der Rückgabewerte mit einer speziellen Zeichenkette gekennzeichnet werden.
-Die Rückgabwerte werden mit dem \emph{return arrow}(->) gekennzeichnet \cite{Apple.2017}.
+Allerdings muss im Gegensatz zu Go die Definition der Rückgabewerte mit einer speziellen Zeichenkette gekennzeichnet werden.
+Die Rückgabwerte werden mit dem \emph{return arrow} (->) gekennzeichnet \cite{Apple.2017}.
 
-\begin{listing}
-\caption{Funktionen in Swift}
+\begin{listing}[H]
+\caption{Funktionen in Swift I}
 \label{lst:FunktionenSwift}
 \begin{SwiftCode}
 func name(parameter-list) -> (result-list){
@@ -172,11 +172,11 @@ func name(parameter-list) -> (result-list){
 \end{listing}
 
 Die Definition von Funktionen ohne Rückgabewert sind in \autoref{lst:FunktionVoidSwift} zu sehen.
-Wenn keine Rückgabewert definiert werden soll, kann der \emph{return arrow}(->) weggelassen werden.
+Wenn kein Rückgabewert definiert werden soll, kann der \emph{return arrow} (->) weggelassen werden.
 Jedoch kann der Rückgabwert auch explizit als Typ \emph{Void} definiert werden.
 
 \begin{listing}[H]
-\caption{Funktionen in Swift}
+\caption{Funktionen in Swift II}
 \label{lst:FunktionVoidSwift}
 \begin{SwiftCode}
 func ohneRueckgabe() {
@@ -191,11 +191,11 @@ func ohneRueckgabe() -> (Void) {
 
 Das \autoref{lst:FunktionRueckgabewift} zeigt die Definiton einer Funktion mit einem Rückgabewert. 
 Die Funktion erwartet zwei Zeichenketten und gibt eine Zeichenkette zurück.
-In Zeile 5 ist der Aufruf der Funktion gezeigt. 
-Swift erwartet das die Aufrufparameter mit Namen und in der definierten Reihenfolge angegeben werden.
+In Zeile 5 wird der Aufruf der Funktion gezeigt. 
+Swift erwartet, dass die Aufrufparameter mit Namen und in der definierten Reihenfolge angegeben werden.
 
-\begin{listing}
-\caption{Definiton einer Funktion mit Rückgabewert in Swift}
+\begin{listing}[H]
+\caption{Definition einer Funktion mit Rückgabewert in Swift}
 \label{lst:FunktionRueckgabewift}
 \begin{SwiftCode}
 func func1(vorName: String, nachName: String) -> (String){
@@ -209,8 +209,8 @@ print(func1(vorName:"Max", nachName:"Mustermann"))
 Auch Swift unterstützt die Rückgabe von mehreren Rückgabewerten.
 Ein Beispiel dafür ist in \autoref{lst:FunktionMultiRueckgabewift} zu sehen. 
 
-\begin{listing}
-\caption{Definiton einer Funktion mit Rückgabewert in Swift}
+\begin{listing}[H]
+\caption{Definition einer Funktion mit Rückgabewert in Swift}
 \label{lst:FunktionMultiRueckgabewift}
 \begin{SwiftCode}
 func multiOp(x:Int, y:Int) -> (add:Int, sub:Int, mul:Int, div:Int){
@@ -227,23 +227,23 @@ print(test.add)
 \end{SwiftCode}
 \end{listing}
 
-Die Funktion ist das Swift-Äquivalent zu der Funktion im \autoref{lst:BeispielFunktionMultiGo}. 
-Die Rückgabeparameterr können mit einem Namen versehen werden, über den der Wert des Rückgabeparameters angesprochen werden kann. 
-Die Rückgabewerte der Funktion können einer Variablen zugewiesen werden (Zeile 10).
+Die hier abgebildete Funktion ist das Swift-Äquivalent zu der Funktion im \autoref{lst:BeispielFunktionMultiGo}. 
+Die Rückgabeparameter können mit einem Namen versehen werden, über den der Wert des Rückgabeparameters angesprochen werden kann. 
+Die Rückgabewerte der Funktion können einer Variablen zugewiesen werden (Code \ref{lst:FunktionMultiRueckgabewift}, Zeile 10).
 Anschließend kann über den Namen des Rückgabeparameters auf dessen Wert zurückgegriffen werden. 
-Diese Art des Zugriffs auf die einzelnen Rückgabwerte ist in Swift eleganter gelöst als in Go.
+% Diese Art des Zugriffs auf die einzelnen Rückgabwerte ist in Swift eleganter gelöst als in Go.
 
 \section{Semikolons}
 \label{sec:Semikolons}
-Laut \cite{Wikipedia.ListProgrammingLanguages} gehören Go und Swift zu den Sprachen, die, was die Syntax angeht, von der Programmiersprache C abstammen.
+Laut \cite{Wikipedia.ListProgrammingLanguages} gehören Go und Swift zu den Sprachen, die, bezüglich der Syntax, von der Programmiersprache C abstammen.
 
 In C muss ein Semikolon am Ende jeder Zeile stehen, um das Ende einer Anweisungen zu kennzeichnen.
 In Go und Swift spielt das Semikolon eine eher untergeordnete Rolle.
 In Swift sind Semikolons optional. 
 Das \autoref{lst:SemicolonsSwift} zeigt zwei gültige Zeilen Quellcode in Swift.
 
-\begin{listing}
-\caption{Semikolons in Swift \cite[S.15]{Hoffman.2017}}
+\begin{listing}[H]
+\caption{Semikolons in Swift \\ Quelle:\cite[S.15]{Hoffman.2017}}
 \label{lst:SemicolonsSwift}
 \begin{SwiftCode}
 print("Hello from Swift")
@@ -251,9 +251,9 @@ print("Hello from Swift");
 \end{SwiftCode}
 \end{listing}
 
-\cite{Hoffman.2017} empfhielt in Swift keine Semikolons zu verwenden. 
-Go benötigt ebenfalls keine Semikolons am Ende einer Quellcode-Zeile. 
-Der Grund dafür wird in den offiziellen FAQ von Go erläutert. 
+\cite{Hoffman.2017} empfiehlt in Swift keine Semikolons zu verwenden. 
+Genauso benötigt Go ebenfalls keine Semikolons am Ende einer Quellcode-Zeile. 
+Der Grund dafür wird in den offiziellen FAQ von Go erläutert:
 
 \begin{quote}
 \enquote{
@@ -261,8 +261,8 @@ Semicolons, however, are for parsers, not for people, and we wanted to eliminate
 }\cite{Golang.FAQ}
 \end{quote}
 
-In Go setzt der Lexer(\todo{Glossar?}) an jedes Zeilenende, welches das Ende eines Ausdrucks sein kann, automatisch ein Semikolon. 
-Dies hat zur Folge das ein gewisser Stil zur Klammerung eingehalten werden muss \cite{Golang.FAQ}.
+In Go setzt der Lexer an jedes Zeilenende, welches das Ende eines Ausdrucks sein kann, automatisch ein Semikolon. 
+Dies hat zur Folge, dass ein gewisser Stil zur Klammerung eingehalten werden muss \cite{Golang.FAQ}.
 
 \begin{listing}[H]
 \caption{Semikolons in Go}

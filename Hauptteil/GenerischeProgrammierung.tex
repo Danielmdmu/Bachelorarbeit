@@ -1,31 +1,19 @@
 \chapter{Generische Programmierung}
-Generische Programmierung erlaubt es flexible und wiederverwendbare Funktionen zu schreiben. 
-Sie ermöglicht es Duplikation zu vermeiden und verständlichen Quelltext zu entwickeln \cite[S.371]{Apple.2017}.
+Generische Programmierung erlaubt es, flexible und wiederverwendbare Funktionen zu schreiben. 
+Sie ermöglicht es, Duplikation zu vermeiden und verständlichen Quelltext zu entwickeln \cite[S.371]{Apple.2017}.
 
 
-Der FAQ von Go ist zu entnehmen, das Go derzeit keine generische Programmierung unterstützt. 
-Jedoch ist es möglich, das Mechanismen zur generischen Programmierung im Laufe der Zeit in Go integriert werden \cite{Golang.FAQ}.
+Die FAQ von Go ist zu entnehmen, das Go derzeit keine generische Programmierung unterstützt. 
+Jedoch ist es möglich, dass Mechanismen zur generischen Programmierung im Laufe der Zeit in Go integriert werden \cite{Golang.FAQ}.
 
 
 Swift bietet direkte Untestützung für generische Programmierung.
-Laut \cite[S.371]{Apple.2017} sind Generics eine der mächtigsten Funktionen von Swift und weden auch in der Standardbibliothek von Swift ausgiebig genutzt.
-Programmierer welche beispielweise aus dem Java-Umfeld kommen, sollten laut \cite[S.206]{Hoffman.2017} keine Probleme haben sich mit generischer Programmierung in Swift zurecht zu finden.
-\autoref{lst:GenericFunctionSwift} zeit ein Beispiel für eine generische Funktion und \autoref{lst:GenericTypeSwift} ein Beispiel für eine generische Klasse.
+Laut \cite[S.371]{Apple.2017} sind Generics eine der mächtigsten Funktionen von Swift und werden auch in der Standardbibliothek von Swift ausgiebig genutzt.
+Programmierer, welche beispielsweise aus dem Java-Umfeld kommen, sollten laut \cite[S.206]{Hoffman.2017} keine Probleme haben, sich mit generischer Programmierung in Swift zurecht zu finden.
+\autoref{lst:GenericFunctionSwift} zeigt ein Beispiel für eine generische Funktion und \autoref{lst:GenericTypeSwift} ein Beispiel für eine generische Klasse.
 
-\begin{listing}
-\caption{Generische Funktion in Swift Quelle: \cite[S.373]{Apple.2017}}
-\label{lst:GenericFunctionSwift}
-\begin{SwiftCode}
-func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
-    let temporaryA = a
-    a = b
-    b = temporaryA
-}
-\end{SwiftCode}
-\end{listing}
-
-\begin{listing}
-\caption{Generische Klasse in Swift Quelle: \cite[S.213]{Hoffman.2017}}
+\begin{listing}[H]
+\caption{Generische Klasse in Swift \\ Quelle:\cite[S.213]{Hoffman.2017}}
 \label{lst:GenericTypeSwift}
 \begin{SwiftCode}
 class List<T> {
@@ -45,3 +33,17 @@ class List<T> {
 }
 \end{SwiftCode}
 \end{listing}
+
+\begin{listing}[H]
+\caption{Generische Funktion in Swift \\ Quelle:\cite[S.373]{Apple.2017}}
+\label{lst:GenericFunctionSwift}
+\begin{SwiftCode}
+func swapTwoValues<T>(_ a: inout T, _ b: inout T) {
+    let temporaryA = a
+    a = b
+    b = temporaryA
+}
+\end{SwiftCode}
+\end{listing}
+
+
